@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Basic Elements | Velzon - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <app-header></app-header>
+
+<!-- removeNotificationModal -->
+<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+            </div>
+         
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        <!-- ========== App Menu ========== -->
+       <app-menu></app-menu>
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                                <h4 class="mb-sm-0">Ajouter Administrateur</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Administrateur</a></li>
+                                        <li class="breadcrumb-item active">Ajouter Administrateur</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-header align-items-center d-flex">
+                                    <h4 class="card-title mb-0 flex-grow-1">Ajouter Admin</h4>
+                                </div><!-- end card header -->
+                                <div class="card-body">
+                                    <div class="p-2 mt-4">
+                                        <form (ngSubmit)="addNewAdmin()" [formGroup]="AdminForm">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="nom" class="form-label">Nom</label>
+                                                        <input type="text" class="form-control" placeholder="Entrer Nom" id="nom" formControlName="nom">
+                                                        <div *ngIf="nom?.touched && nom?.invalid">
+                                                            <small class="text-danger" *ngIf="nom?.errors?.['required']">Nom
+                                                                est obligatoire</small>
+                                                          </div>
+                                                    </div>
+                                                    
+                                                </div><!--end col-->
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="prenom" class="form-label">Prenom</label>
+                                                        <input type="text" class="form-control" placeholder="Entrer Prenom" id="prenom"  formControlName="prenom">
+                                                        <div *ngIf="prenom?.touched && prenom?.invalid">
+                                                            <small class="text-danger" *ngIf="prenom?.errors?.['required']">Prenom
+                                                                est obligatoire</small>
+                                                          </div>
+                                                    </div>
+                                                   
+                                                </div><!--end col-->
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="email" class="form-label">Adresse Email</label>
+                                                        <input type="email" class="form-control" placeholder="example@gamil.com" id="email"  formControlName="email">
+                                                        <div *ngIf="email?.touched && email?.invalid">
+                                                            <small class="text-danger" *ngIf="email?.errors?.['required']">Adresse Email
+                                                                est obligatoire</small>
+                                                          </div>
+                                                    </div>
+                                                </div><!--end col-->
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <!-- Input Password -->
+                                                        <label for="password" class="form-label">Mot de passe</label>
+                                                        <input type="password" class="form-control" id="password" placeholder="Mot de passe"  formControlName="mdp">
+                                                        <div *ngIf="mdp?.touched && mdp?.invalid">
+                                                            <small class="text-danger" *ngIf="mdp?.errors?.['required']">Mot de passe
+                                                                est obligatoire</small>
+                                                          </div>
+                                                    </div>
+                                                </div><!--end col-->
+                                                <div class="col-6">
+                                                    <div class="mb-3">
+                                                        <label for="ForminputRole" class="form-label">Rôle</label>
+                                                        <select id="ForminputRole" class="form-select" formControlName="role">
+                                                            <option value="" disabled selected>Choisissez votre rôle</option>
+                                                            <option value="Sous-administrateur">Sous-administrateur</option>
+                                                            <option value="Super-administrateur">Super-administrateur</option>
+                                                        </select>
+                                                        <div *ngIf="role?.touched && role?.invalid">
+                                                            <small class="text-danger" *ngIf="role?.errors?.['required']">Role
+                                                                est obligatoire</small>
+                                                          </div>
+                                                    </div>
+
+                                                </div>                                                
+                                                <!--end col-->
+                                                <div class="col-lg-12">
+                                                    <div class="text-end">
+                                                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                                                    </div>
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                    
+                 
+                </div> <!-- container-fluid -->
+            </div><!-- End Page-content -->
+
+          <app-footer></app-footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+    <!--preloader-->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner-border text-primary avatar-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="customizer-setting d-none d-md-block">
+        <div class="btn-info rounded-pill shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+            <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
+        </div>
+    </div>
+</body>
+</html>
