@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ListAnnonceurComponent {
   listAnnonceur: Annonceur[];
+  p:number=1;
+  collection:any[]
   constructor(private service:CrudService,private router:Router ) { }
   //supprimer
   Deleteannonceur(annonceur: Annonceur){
@@ -22,6 +24,39 @@ export class ListAnnonceurComponent {
       })
    
   }
+}
+updateAnnonceuretat(annonceur:Annonceur){
+  
+  console.log(annonceur);
+
+  let index=this.listAnnonceur.indexOf(annonceur);
+  if(annonceur.etat==true)
+  { if(confirm("Voulez vous disactiver cet compte avec l'ID " + annonceur.id + " ?")) {let newAnnonceur =new Annonceur(annonceur.id,annonceur.nom,annonceur.prenom,annonceur.email,annonceur.adresse,annonceur.mdp,annonceur.telephone,false)
+this.service.updateAnnonceur(annonceur.id,newAnnonceur).subscribe
+(
+  res=>{console.log(res)
+  this.listAnnonceur[index]=newAnnonceur
+  },
+  err=>console.log(err)
+)
+  }}
+ 
+  else{
+    if(confirm("Voulez vous activer cet compte avec l'ID " + annonceur.id + " ?")) {
+
+    let newAnnonceur=new Annonceur(annonceur.id,annonceur.nom,annonceur.prenom,annonceur.email,annonceur.adresse,annonceur.mdp,annonceur.telephone,true)
+    this.service.updateAnnonceur(annonceur.id,newAnnonceur).subscribe
+  (
+    res=>{console.log(res)
+    this.listAnnonceur[index]=newAnnonceur
+    },
+    err=>console.log(err)
+  )}
+
+  }
+  
+
+
 }
   ngOnInit(): void {
     this.service.getAnnonceur().subscribe(annonceur => {

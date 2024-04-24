@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row row-cols-1 row-cols-md-2 g-4">
-                                        <div class="col" *ngFor="let contact of listContact">
+                                        <div class="col" *ngFor="let contact of listContact |paginate:{itemsPerPage:4,currentPage:p} ">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h5 class="card-title">{{ contact.sujet }}</h5>
@@ -87,8 +87,8 @@
                                                     <p class="card-text">Email: {{ contact.email }}</p>
                                                     <p class="card-text">Message: {{ contact.msg }}</p>
                                                     <p class="card-text">Numéro de téléphone: {{ contact.telephone }}</p>
+                                                    <span><i class="mdi mdi-clock-outline"></i> {{ contact.date }}</span>
                                                     <div class="d-flex justify-content-end">
-                                                        <button type="button" class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#showModal">Modifier <i class="ri-edit-fill"></i></button>
                                                         <button type="button" class="btn btn-sm btn-danger" (click)="Deletecontact(contact)">Supprimer <i class="ri-delete-bin-6-fill"></i></button>
                                                     </div>
                                                 </div>
@@ -99,6 +99,7 @@
                             </div>
                         </div><!--end col-->
                     </div>
+                    <pagination-controls style="text-align: right; color: #eb2f64;" (pageChange)="p = $event"></pagination-controls>
                     <!--end row-->
 
                     

@@ -25,9 +25,11 @@ export class AjouterAdminComponent {
         Validators.email]),
       mdp: new FormControl('',[
         Validators.required,]),
+        confirmPassword: ['', Validators.required], 
     role: new FormControl( '', [
       Validators.required,]),}
      this.AdminForm = this.fb.group(formControls)
+     
    }
    get nom() {return this.AdminForm.get('nom');}
   get prenom() { return this.AdminForm.get('prenom');}
@@ -39,7 +41,7 @@ export class AjouterAdminComponent {
     let data = this.AdminForm.value;
     console.log(data);
     let admin = new Admin(
-     undefined, data.nom,data.prenom,data.email,data.mdp,data.role);
+     undefined, data.nom,data.prenom,data.email,data.mdp,data.role);0
     console.log(admin);
 
     if (
@@ -74,10 +76,27 @@ export class AjouterAdminComponent {
 
     }
   }
-
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('mdp').value;
+    const confirmPassword = formGroup.get('confirmPassword').value;
+    if (password !== confirmPassword) {
+      formGroup.get('confirmPassword').setErrors({ mismatch: true });
+    } else {
+      formGroup.get('confirmPassword').setErrors(null);
+    }
+  }
+  telephoneValidator(control: FormControl): { [key: string]: any } | null {
+    // Modèle de numéro de téléphone : au moins 8 chiffres, avec des caractères spéciaux facultatifs (*, /, -)
+    const telephonePattern = /^(?:\s?|\+?[\d*\/\- ]{8,})$/;
+    const valid = telephonePattern.test(control.value);
+    return valid ? null : { invalidTelephone: true };
+}
   //supprimer
 
     ngOnInit(): void {
+      
+        validator: this.passwordMatchValidator // Utilisez this.passwordMatchValidator
+      
     }
 
 }

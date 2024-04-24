@@ -43,7 +43,6 @@ export class LoginComponent {
     let admin = new Admin(null,null,null,data.email,data.mdp,null);
     console.log(admin);
     if (
-  
       data.email == 0 ||
       data.mdp == 0
     )

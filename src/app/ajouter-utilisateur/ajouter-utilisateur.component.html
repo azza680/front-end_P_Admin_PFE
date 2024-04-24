@@ -49,12 +49,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                                <h4 class="mb-sm-0">Ajouter Femme De Menage</h4>
+                                <h4 class="mb-sm-0">Ajouter Utilisateur</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Femme De Menage</a></li>
-                                        <li class="breadcrumb-item active">Ajouter Femme De Menage</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Utilisateur</a></li>
+                                        <li class="breadcrumb-item active">Ajouter Utilisateur</li>
                                     </ol>
                                 </div>
 
@@ -65,73 +65,87 @@
                         <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Ajouter Femme De Menage</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">Ajouter Utilisateur</h4>
                                 </div><!-- end card header -->
                                 <div class="card-body">
                                     <div class="p-2 mt-4">
-                                        <form action="javascript:void(0);" (ngSubmit)="addNewFemmeDeMenage()" [formGroup]="FemmeDeMenageForm">
+                                        <form (ngSubmit)="addNewUtilisateur()" [formGroup]="UtilisateurForm" novalidate>
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="nom" class="form-label">Nom</label>
                                                         <input type="text" class="form-control" placeholder="Entrer Nom" id="nom" formControlName="nom">
-                                                        <div *ngIf="nom?.touched && nom?.invalid">
-                                                            <small class="text-danger" *ngIf="nom?.errors?.['required']">Nom
-                                                                est obligatoire</small>
-                                                          </div>
+                                                        <small *ngIf="nom.invalid && nom.touched" class="text-danger">Nom est obligatoire</small>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="prenom" class="form-label">Prenom</label>
                                                         <input type="text" class="form-control" placeholder="Entrer Prenom" id="prenom" formControlName="prenom">
-                                                        <div *ngIf="prenom?.touched && prenom?.invalid">
-                                                            <small class="text-danger" *ngIf="prenom?.errors?.['required']">Prenom
-                                                                est obligatoire</small>
-                                                          </div>
+                                                        <small *ngIf="prenom.invalid && prenom.touched" class="text-danger">Prenom est obligatoire</small>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
-                                                        <label for="email" class="form-label">Adresse Email</label>
-                                                        <input type="email" class="form-control" placeholder="example@gamil.com" id="email" formControlName="email">
-                                                        <div *ngIf="email?.touched && email?.invalid">
-                                                            <small class="text-danger" *ngIf="email?.errors?.['required']">Adresse Email
-                                                                est obligatoire</small>
-                                                          </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                                <div class="col-12">
-                                                    <div class="mb-3">
-                                                        <!-- Input Password -->
-                                                        <label for="password" class="form-label">Mot de passe</label>
-                                                        <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="mdp">
-                                                        <div *ngIf="mdp?.touched && mdp?.invalid">
-                                                            <small class="text-danger" *ngIf="mdp?.errors?.['required']">Mot de passe
-                                                                est obligatoire</small>
-                                                          </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                                <div class="col-12">
-                                                    <div class="mb-3">
-                                                        <label for="address" class="form-label">Adresse</label>
+                                                        <label for="adresse" class="form-label">Adresse</label>
                                                         <input type="text" class="form-control" placeholder="Votre adresse" id="adresse" formControlName="adresse">
-                                                        <div *ngIf="adresse?.touched && adresse?.invalid">
-                                                            <small class="text-danger" *ngIf="adresse?.errors?.['required']">Adresse
-                                                                est obligatoire</small>
-                                                          </div>
+                                                        <small *ngIf="adresse.invalid && adresse.touched" class="text-danger">Adresse est obligatoire</small>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="numeroTelephone" class="form-label">Numéro de téléphone</label>
-                                                        <input type="tel" class="form-control" placeholder="+(216) 55 803 856" id="numeroTelephone" formControlName="telephone">
-                                                        <div *ngIf="telephone?.touched && telephone?.invalid">
-                                                            <small class="text-danger" *ngIf="telephone?.errors?.['required']">Numéro de téléphone
-                                                                est obligatoire</small>
-                                                          </div>
+                                                        <input type="tel" class="form-control" placeholder="+(216) ** *** ***" id="numeroTelephone" formControlName="telephone">
+                                                        <div id="telephone-error" class="error-messages">
+                                                            <small class="error-message" *ngIf="telephone.errors?.['required'] && telephone.touched" class="text-danger">Numéro de téléphone est obligatoire</small>
+                                                            <small class="error-message" *ngIf="telephone.errors?.['invalidTelephone'] && telephone.touched" class="text-danger">Numéro de téléphone invalide (doit comporter au moins 8 chiffres)</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="email" class="form-label">Adresse Email</label>
+                                                        <input type="email" class="form-control" placeholder="example@gmail.com" id="email" formControlName="email">
+                                                        <!-- Error messages -->
+                                                        <div id="email-error" class="error-messages">
+                                                            <small class="error-message" *ngIf="email.errors?.['required'] && email.touched">* Adresse Email est obligatoire</small>
+                                                            <small class="error-message" *ngIf="email.errors?.['email'] && email.touched">* Adresse Email invalide (exemple : example@gmail.com)</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="password" class="form-label">Mot de passe</label>
+                                                        <input type="password" class="form-control" id="password" placeholder="***********" formControlName="mdp">
+                                                        <small *ngIf="mdp.invalid && mdp.touched" class="text-danger">Mot de passe est obligatoire</small>
                                                     </div>
                                                 </div><!--end col-->
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="confirmPassword" class="form-label">Confirmez votre mot de passe</label>
+                                                        <input type="password" class="form-control" placeholder="***********" id="confirmPassword" formControlName="confirmPassword">
+                                                        <small *ngIf="confirmPassword.errors?.['mismatch'] && confirmPassword.touched" class="text-danger">
+                                                            Les mots de passe ne correspondent pas.
+                                                        </small>
+                                                    </div>
+                                                </div><!--end col-->
+                                                <div class="col-12 mb-3">
+                                                    <div class="form-group">
+                                                        <label for="ForminputRole">Rôle</label>
+                                                        <select id="ForminputRole" class="form-select" formControlName="role">
+                                                            <option value="" disabled selected>Choisissez le rôle</option>
+                                                            <option value="Propriétaire">Propriétaire</option>
+                                                            <option value="Vacancier">Vacancier</option>
+                                                            <option value="Femme de menage">Femme de menage</option>
+                                                        </select>
+                                                        <small *ngIf="role.invalid && role.touched" class="text-danger">Rôle est obligatoire</small>
+                                                    </div>
+                                                </div><!--end col-->
+                                                
                                                 <div class="col-lg-12">
                                                     <div class="text-end">
                                                         <button type="submit" class="btn btn-primary">Ajouter</button>
@@ -139,6 +153,7 @@
                                                 </div><!--end col-->
                                             </div><!--end row-->
                                         </form>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -177,4 +192,5 @@
     </div>
 </body>
 </html>
+
 

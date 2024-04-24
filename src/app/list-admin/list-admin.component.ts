@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class ListAdminComponent {
   role:String
   listAdmin: Admin[];
+  p:number=1;
+  collection:any[]
   constructor(private service:CrudService,private router:Router ) { }
   //supprimer
   Deleteadmin(admin: Admin){

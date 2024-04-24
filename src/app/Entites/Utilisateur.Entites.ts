@@ -1,13 +1,15 @@
-export class Annonceur{
+export class Utilisateur{
     constructor(
         public id?:number,
         public nom?:string,
         public prenom?:string,
         public email?:string,
+        public date_de_naissance?:Date,
+        public telephone?:string,
         public adresse?:string,
         public mdp?:string,
-        public telephone?:string,
-        public etat?:boolean 
-
+        public role?:string,
+        public etat?:boolean ,
+        public photoProfil?: File
     ){}
 }

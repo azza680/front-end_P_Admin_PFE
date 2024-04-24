@@ -97,7 +97,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let annonceur of listAnnonceur">
+                                            <tr *ngFor="let annonceur of listAnnonceur |paginate:{itemsPerPage:10,currentPage:p} ">
                                                 <td scope="row">
                                                     <div class="form-check">
                                                         <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
@@ -111,13 +111,22 @@
                                                 <td>{{ annonceur.telephone }}</td>
                                                 <td>
                                                     <div class="d-flex gap-2">
-                                                        <button type="submit" class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal">Modifier <i class="ri-edit-fill"></i></button>
+                                                        <button *ngIf="!annonceur.etat" class="btn btn-sm btn-secondary" (click)="updateAnnonceuretat(annonceur)">
+                                                            <i class="bx bx-lock"></i>
+                                                         </button>
+                                                         <button *ngIf="annonceur.etat" class="btn btn-sm btn-secondary" (click)="updateAnnonceuretat(annonceur)">
+                                                          <i class="bx bx-check"></i>      
+                                                         </button>
+                                                        <a href="modifierAnnonceur/{{annonceur.id}}" type="submit" class="btn btn-sm btn-success">Modifier <i class="ri-edit-fill"></i></a>
                                                         <button type="submit" (click)="Deleteannonceur(annonceur)" class="btn btn-sm btn-danger remove-item-btn">Supprimer <i class="ri-delete-bin-6-fill"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <a href="ajouterAnnoceur" type="submit" class="btn btn-primary">Ajouter Annoceur</a>
+                                    <pagination-controls style="text-align: right; color: #eb2f64; "  (pageChange)="p = $event"></pagination-controls>
+
                                 </div>
                             </div>
                         </div><!--end col-->

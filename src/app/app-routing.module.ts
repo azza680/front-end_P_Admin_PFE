@@ -19,27 +19,32 @@ import { ListContactComponent } from './list-contact/list-contact.component';
 import { ListPlanificationComponent } from './list-planification/list-planification.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './service/auth.service';
+import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
+import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.component';
 
 const routes: Routes = [
-  {path:'',component:AjouterAdminComponent},
-  {path:'listAdmin',component:ListAdminComponent},
-  {path:'modifierAdmin',component:ModiferAdminComponent},
-  {path:'ajouterClient',component:AjouterClientComponent},
-  {path:'listClient',component:ListClientComponent},
-  {path:'modifierClient',component:ModifierClientComponent},
-  {path:'ajouterAnnonceur',component:AjouterAnnonceurComponent},
-  {path:'listAnnonceur',component:ListAnnonceurComponent},
-  {path:'modifierAnnonceur',component:ModifierAnnonceurComponent},
-  {path:'ajouterFemmeDeMenage',component:AjouterFemmeDeMenageComponent},
-  {path:'listFemmeDeMenage',component:ListFemmeDeMenageComponent},
-  {path:'modifierFemmeDeMenage',component:ModifierFemmeDeMenageComponent},
-  {path:'ajouterCategorie',component:AjouterCategorieComponent},
-  {path:'listCategorie',component:ListCategorieComponent},
-  {path:'modifierCategorie',component:ModifierCategorieComponent},
-  {path:'listContact',component:ListContactComponent},
-  {path:'listplanification',component:ListPlanificationComponent},
+  {path:'ajouterAdmin',component:AjouterAdminComponent,canActivate:[AuthGuard]},
+  {path:'ajouterUtilisateur',component:AjouterUtilisateurComponent,canActivate:[AuthGuard]},
+  {path:'listUtilisateur',component:ListUtilisateurComponent,canActivate:[AuthGuard]},
+  {path:'listAdmin',component:ListAdminComponent,canActivate:[AuthGuard]},
+  {path:'modifierAdmin/:id',component:ModiferAdminComponent,canActivate:[AuthGuard]},
+  {path:'ajouterClient',component:AjouterClientComponent,canActivate:[AuthGuard]},
+  {path:'listClient',component:ListClientComponent,canActivate:[AuthGuard]},
+  {path:'modifierClient/:id',component:ModifierClientComponent,canActivate:[AuthGuard]},
+  {path:'ajouterAnnonceur',component:AjouterAnnonceurComponent,canActivate:[AuthGuard]},
+  {path:'listAnnonceur',component:ListAnnonceurComponent,canActivate:[AuthGuard]},
+  {path:'modifierAnnonceur/:id',component:ModifierAnnonceurComponent,canActivate:[AuthGuard]},
+  {path:'ajouterFemmeDeMenage',component:AjouterFemmeDeMenageComponent,canActivate:[AuthGuard]},
+  {path:'listFemmeDeMenage',component:ListFemmeDeMenageComponent,canActivate:[AuthGuard]},
+  {path:'modifierFemmeDeMenage/:id',component:ModifierFemmeDeMenageComponent,canActivate:[AuthGuard]},
+  {path:'ajouterCategorie',component:AjouterCategorieComponent,canActivate:[AuthGuard]},
+  {path:'listCategorie',component:ListCategorieComponent,canActivate:[AuthGuard]},
+  {path:'modifierCategorie/:id',component:ModifierCategorieComponent,canActivate:[AuthGuard]},
+  {path:'listContact',component:ListContactComponent,canActivate:[AuthGuard]},
+  {path:'listplanification',component:ListPlanificationComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
-  {path:'home',component:HomeComponent}
+  {path:'',component:HomeComponent,canActivate:[AuthGuard]}
   
   
   

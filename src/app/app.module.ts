@@ -28,6 +28,10 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{HttpClientModule} from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ProfilComponent } from './profil/profil.component';
+import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
+import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +56,10 @@ import { NgToastModule } from 'ng-angular-popup';
     ListContactComponent,
     ListPlanificationComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ProfilComponent,
+    AjouterUtilisateurComponent,
+    ListUtilisateurComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +67,8 @@ import { NgToastModule } from 'ng-angular-popup';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule, 
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

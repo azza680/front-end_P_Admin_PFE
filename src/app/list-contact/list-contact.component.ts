@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ListContactComponent {
   listContact: Contact[];
+  p:number=1;
+  collection:any[]
   constructor(private service:CrudService,private router:Router ) { }
   //supprimer
   Deletecontact(contact: Contact){

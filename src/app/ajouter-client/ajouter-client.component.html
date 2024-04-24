@@ -75,24 +75,40 @@
                                                     <div class="mb-3">
                                                         <label for="nom" class="form-label">Nom</label>
                                                         <input type="text" class="form-control" placeholder="Entrer Nom" id="nom" formControlName="nom">
+                                                        <div *ngIf="nom?.touched && nom?.invalid">
+                                                            <small class="text-danger" *ngIf="nom?.errors?.['required']">Nom
+                                                                est obligatoire</small>
+                                                          </div>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="prenom" class="form-label">Prenom</label>
                                                         <input type="text" class="form-control" placeholder="Entrer Prenom" id="prenom" formControlName="prenom">
+                                                        <div *ngIf="prenom?.touched && prenom?.invalid">
+                                                            <small class="text-danger" *ngIf="prenom?.errors?.['required']">Prenom
+                                                                est obligatoire</small>
+                                                          </div>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="email" class="form-label">Adresse Email</label>
                                                         <input type="email" class="form-control" placeholder="example@gamil.com" id="email" formControlName="email">
+                                                        <div *ngIf="email?.touched && email?.invalid">
+                                                            <small class="text-danger" *ngIf="email?.errors?.['required']">Adresse Email
+                                                                est obligatoire</small>
+                                                          </div>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="address" class="form-label">Adresse</label>
                                                         <input type="text" class="form-control" placeholder="Votre adresse" id="adresse" formControlName="adresse">
+                                                        <div *ngIf="adresse?.touched && adresse?.invalid">
+                                                            <small class="text-danger" *ngIf="adresse?.errors?.['required']">Adresse
+                                                                est obligatoire</small>
+                                                          </div>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-12">
@@ -100,17 +116,25 @@
                                                         <!-- Input Password -->
                                                         <label for="password" class="form-label">Mot de passe</label>
                                                         <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="mdp">
+                                                        <div *ngIf="mdp?.touched && mdp?.invalid">
+                                                            <small class="text-danger" *ngIf="mdp?.errors?.['required']">Mot de passe
+                                                                est obligatoire</small>
+                                                          </div>
                                                     </div>
                                                 </div><!--end col-->
-                                                <div class="col-6">
+                                                <div class="col-12">
                                                     <div class="mb-3">
                                                         <label for="numeroTelephone" class="form-label">Numéro de téléphone</label>
                                                         <input type="tel" class="form-control" placeholder="+(216) 55 803 856" id="numeroTelephone" formControlName="telephone">
+                                                        <div *ngIf="telephone?.touched && telephone?.invalid">
+                                                            <small class="text-danger" *ngIf="telephone?.errors?.['required']">Numéro de téléphone
+                                                                est obligatoire</small>
+                                                          </div>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-lg-12">
                                                     <div class="text-end">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <button type="submit" class="btn btn-primary">Ajouter</button>
                                                     </div>
                                                 </div><!--end col-->
                                             </div><!--end row-->
