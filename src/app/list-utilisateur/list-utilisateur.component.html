@@ -111,7 +111,6 @@
                                                 <td>{{ utilisateur.telephone }}</td>
                                                 <td>{{ utilisateur.adresse }}</td>
                                                 <td>{{ utilisateur.role }}</td>
-                                                
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="card card-animate" ><button *ngIf="!utilisateur.etat" class="btn btn-sm btn-light" (click)="updateUtilisateuretat(utilisateur)">
@@ -120,14 +119,14 @@
                                                          <div class="card card-animate" ><button *ngIf="utilisateur.etat" class="btn btn-sm btn-secondary" (click)="updateUtilisateuretat(utilisateur)">
                                                           <i class="mdi-account-lock"></i>      
                                                          </button></div>
-                                                        <div class="card card-animate" ><a href="modifierAnnonceur/{{utilisateur.id}}" type="submit" class="btn btn-sm btn-success">Modifier <i class="ri-edit-fill"></i></a></div>
+                                                        <div class="card card-animate" ><a href="modifierUtilisateur/{{utilisateur.id}}" type="submit" class="btn btn-sm btn-success">Modifier <i class="ri-edit-fill"></i></a></div>
                                                         <div class="card card-animate" ><button type="submit" (click)="Deleteutilisateur(utilisateur)" class="btn btn-sm btn-danger remove-item-btn">Supprimer <i class="ri-delete-bin-6-fill"></i></button></div>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="d-flex gap-2" ><div class="card card-animate" ><a href="ajouterUtilisateur" type="submit" class="btn btn-primary">Ajouter Utilisateur</a></div></div>
+                                    <div class="d-flex gap-2" ><div class="card card-animate" ><a href="ajouterUtilisateur"  class="btn btn-primary">Ajouter Utilisateur</a></div></div>
                                     <pagination-controls style="text-align: right; color: #eb2f64; "  (pageChange)="p = $event"></pagination-controls>
 
                                 </div>

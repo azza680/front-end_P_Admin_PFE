@@ -2,10 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Admin } from '../Entites/Admin.Entites';
 import  {Observable, catchError} from 'rxjs';
-import { Client } from '../Entites/Client.Entites';
-import { Annonceur } from '../Entites/Annonceur.Entites';
 import { Contact } from '../Entites/Contact.Entites';
-import { FemmeDeMenage } from '../Entites/FemmeDeMenage.Entites';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Utilisateur } from '../Entites/Utilisateur.Entites';
 
@@ -54,54 +51,6 @@ export class CrudService {
       return false;
     }
   }
-  
-//ClientCrud
-  addClient(client:Client)
-   {
-    return this.http.post<any>(this.apiUrl+"/Client",client);
-   }
-   onDeleteClient(id : number){
-    const url =`${this.apiUrl+"/Client"}/${id}` 
-    return this.http.delete(url)
-  }
-  getClient(): Observable<Client[]>{
-    return this.http.get<Client[]>(this.apiUrl + "/Client");
-  }
-  updateClient(id:number,client: Client) {
-    const url = `${this.apiUrl+"/Client"}/${id}`
-    return this.http.put<any>(url, client);
-  }
-  findClientById(id : number): Observable<Client> {
-    const url =`${this.apiUrl+"/Client"}/${id}`
-    return this.http.get<Client>(url)
-  }
-  userDetails(){
-    let token:any=localStorage.getItem('myToken');
-    let decodeToken= this.helper.decodeToken(token);
-     return decodeToken.data;
-   }
-   
-//AnnonceurCrud
-  addAnnonceur(annonceur:Annonceur)
-   {
-    return this.http.post<any>(this.apiUrl+"/Annonceur",annonceur);
-   }
-   onDeleteAnnonceur(id : number){
-    const url =`${this.apiUrl+"/Annonceur"}/${id}` 
-    return this.http.delete(url)
-  }
-  getAnnonceur(): Observable<Annonceur[]>{
-    return this.http.get<Annonceur[]>(this.apiUrl + "/Annonceur");
-  }
-  updateAnnonceur(id:number,annonceur: Annonceur) {
-    const url = `${this.apiUrl+"/Annonceur"}/${id}`
-    return this.http.put<any>(url, annonceur);
-  }
-  findAnnonceurById(id : number): Observable<Annonceur> {
-    const url =`${this.apiUrl+"/Annonceur"}/${id}`
-    return this.http.get<Annonceur>(url)
-  }
-  
 //ContactCrud
   onDeleteContact(id : number){
     const url =`${this.apiUrl+"/Contact"}/${id}` 
@@ -110,31 +59,10 @@ export class CrudService {
   getContact(): Observable<Contact[]>{
     return this.http.get<Contact[]>(this.apiUrl + "/Contact");
   }
-
-//FemmeDeMenageCrud
-  addFemmeDM(femmeDM:FemmeDeMenage)
-   {
-    return this.http.post<any>(this.apiUrl+"/FemmeDeMenage",femmeDM);
-   }
-   onDeleteFemmeDM(id : number){
-    const url =`${this.apiUrl+"/FemmeDeMenage"}/${id}` 
-    return this.http.delete(url)
-  }
-  getFemmeDM(): Observable<FemmeDeMenage[]>{
-    return this.http.get<FemmeDeMenage[]>(this.apiUrl + "/FemmeDeMenage");
-  }
-  findFemmeDeMenageById(id : number): Observable<FemmeDeMenage> {
-    const url =`${this.apiUrl+"/FemmeDeMenage"}/${id}`
-    return this.http.get<FemmeDeMenage>(url)
-  }
-  updateFemmeDeMenage(id:number,femmeDM: FemmeDeMenage) {
-    const url = `${this.apiUrl+"/FemmeDeMenage"}/${id}`
-    return this.http.put<any>(url, femmeDM);
-  }
 //UtilisateurCrud
   addUtilisateur(utilisateur:Utilisateur)
    {
-    return this.http.post<any>(this.apiUrl+"/Utilisateur",utilisateur);
+    return this.http.post<any>(this.apiUrl+"/Utilisateur/register",utilisateur);
    }
   loginUtilisateur(utilisateur:Utilisateur){
     return this.http.post<any>(this.loginUserUrl, utilisateur);
@@ -154,17 +82,12 @@ export class CrudService {
     const url =`${this.apiUrl+"/Utilisateur"}/${id}`
     return this.http.get<Utilisateur>(url)
   }
-  ajouterPhotoDeProfil(userId: number, photo: File): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('photo', photo, photo.name);
-    return this.http.post<any>(`${this.apiUrl}/Utilisateur/${userId}/photo`, formData)
-      .pipe(
-        catchError(error => {
-          console.error('Erreur lors de l\'ajout de la photo de profil : ', error);
-          throw error;
-        })
-      );
-  }
+  
+  userDetails(){
+    let token:any=localStorage.getItem('myToken');
+    let decodeToken= this.helper.decodeToken(token);
+     return decodeToken.data;
+   }
  
 
 }

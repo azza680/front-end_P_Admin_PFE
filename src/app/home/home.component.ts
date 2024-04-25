@@ -23,7 +23,7 @@ export class HomeComponent {
       this.totalAdmins = admin.length;
     });
 
-    this.service.getClient().subscribe(client => {
+    this.service.getUtilisateur().subscribe(client => {
       this.totalClients = client.length;
     });
 

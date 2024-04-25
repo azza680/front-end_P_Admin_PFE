@@ -32,6 +32,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ProfilComponent } from './profil/profil.component';
 import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
 import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.component';
+import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.co
     HomeComponent,
     ProfilComponent,
     AjouterUtilisateurComponent,
-    ListUtilisateurComponent
+    ListUtilisateurComponent,
+    ModifierUtilisateurComponent
   ],
   imports: [
     BrowserModule,

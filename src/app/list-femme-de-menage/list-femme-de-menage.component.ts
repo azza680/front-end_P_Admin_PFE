@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FemmeDeMenage } from '../Entites/FemmeDeMenage.Entites';
 import { CrudService } from '../service/crud.service';
 import { Router } from '@angular/router';
+import { Utilisateur } from '../Entites/Utilisateur.Entites';
 
 @Component({
   selector: 'app-list-femme-de-menage',
@@ -9,13 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-femme-de-menage.component.css']
 })
 export class ListFemmeDeMenageComponent {
-  listFemmeDeMenage: FemmeDeMenage[];
+  listUtilisateur: Utilisateur[];
+  p:number=1;
+  collection:any[]
   constructor(private service:CrudService,private router:Router ) { }
   //supprimer
-  DeletefemmeDM(femmeDM: FemmeDeMenage){
-    if(confirm("Voulez vous supprimer femme de menage avec l'ID " + femmeDM.id + " ?")) {
+  Deleteutilisateur(utilisateur: Utilisateur){
+    if(confirm("Voulez vous supprimer cet utilisateur avec l'ID " + utilisateur.id + " ?")) {
      
-      this.service.onDeleteFemmeDM(femmeDM.id).subscribe(() => {
+      this.service.onDeleteUtilisateur(utilisateur.id).subscribe(() => {
         this.router.navigate(['/listFemmeDeMenage']).then(() => {
           window.location.reload()
         })
@@ -23,9 +25,41 @@ export class ListFemmeDeMenageComponent {
    
   }
 }
+updateUtilisateuretat(utilisateur:Utilisateur){
+  console.log(utilisateur);
+
+  let index=this.listUtilisateur.indexOf(utilisateur);
+  if(utilisateur.etat==true)
+  { if(confirm("Voulez vous disactiver cet compte avec l'ID " + utilisateur.id + " ?")) {let newUtilisateur =new Utilisateur(utilisateur.id,utilisateur.nom,utilisateur.prenom,utilisateur.email,utilisateur.date_de_naissance,utilisateur.telephone,utilisateur.adresse,utilisateur.mdp,utilisateur.role,false)
+this.service.updateUtilisateur(utilisateur.id,newUtilisateur).subscribe
+(
+  res=>{console.log(res)
+  this.listUtilisateur[index]=newUtilisateur
+  },
+  err=>console.log(err)
+)
+  }}
+ 
+  else{
+    if(confirm("Voulez vous activer cet compte avec l'ID " + utilisateur.id + " ?")) {
+
+    let newUtilisateur=new Utilisateur(utilisateur.id,utilisateur.nom,utilisateur.prenom,utilisateur.email,utilisateur.date_de_naissance,utilisateur.telephone,utilisateur.adresse,utilisateur.mdp,utilisateur.role,true)
+    this.service.updateUtilisateur(utilisateur.id,newUtilisateur).subscribe
+  (
+    res=>{console.log(res)
+    this.listUtilisateur[index]=newUtilisateur
+    },
+    err=>console.log(err)
+  )}
+
+  }
+
+
+
+}
   ngOnInit(): void {
-    this.service.getFemmeDM().subscribe(femmeDM => {
-      this.listFemmeDeMenage = femmeDM
+    this.service.getUtilisateur().subscribe(utilisateur => {
+      this.listUtilisateur = utilisateur
     })
   }
 }

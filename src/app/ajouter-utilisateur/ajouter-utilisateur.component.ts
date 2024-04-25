@@ -29,7 +29,6 @@ export class AjouterUtilisateurComponent {
   get mdp() { return this.UtilisateurForm.get('mdp'); }
   get confirmPassword() { return this.UtilisateurForm.get('confirmPassword'); }
   get role() { return this.UtilisateurForm.get('role'); }
-  get photoProfil() { return this.UtilisateurForm.get('photoProfil'); } // Ajout du getter pour la photo de profil
 
   ngOnInit(): void {
     // Initialisation du formulaire avec le nouveau champ pour la photo de profil
@@ -42,15 +41,11 @@ export class AjouterUtilisateurComponent {
       mdp: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       role: ['', Validators.required],
-      photoProfil: [''] // Initialisez le champ de la photo de profil avec une chaîne vide
     }, {
       validator: this.passwordMatchValidator
     });
   }
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.UtilisateurForm.get('photoProfil').setValue(file);
-  }
+  
   // Méthode pour valider la correspondance des mots de passe
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('mdp').value;
@@ -77,7 +72,6 @@ export class AjouterUtilisateurComponent {
       formData.adresse,
       formData.mdp,
       formData.role,
-      formData.photoProfil // Ajoutez la photo de profil à l'objet Utilisateur
     );
   
     if (

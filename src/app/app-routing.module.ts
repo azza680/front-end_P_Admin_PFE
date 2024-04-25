@@ -22,6 +22,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './service/auth.service';
 import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
 import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.component';
+import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
+
 
 const routes: Routes = [
   {path:'ajouterAdmin',component:AjouterAdminComponent,canActivate:[AuthGuard]},
@@ -44,7 +46,9 @@ const routes: Routes = [
   {path:'listContact',component:ListContactComponent,canActivate:[AuthGuard]},
   {path:'listplanification',component:ListPlanificationComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
-  {path:'',component:HomeComponent,canActivate:[AuthGuard]}
+  {path:'',component:HomeComponent,canActivate:[AuthGuard]},
+  {path:'modifierUtilisateur/:id',component:ModifierUtilisateurComponent,canActivate:[AuthGuard]}
+
   
   
   

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FemmeDeMenage } from '../Entites/FemmeDeMenage.Entites';
 import { CrudService } from '../service/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Utilisateur } from '../Entites/Utilisateur.Entites';
 
 @Component({
   selector: 'app-modifier-femme-de-menage',
@@ -13,7 +13,7 @@ export class ModifierFemmeDeMenageComponent
 {
   updateForm: FormGroup;
   id: number;
-  currentFemmeDeMenage = new FemmeDeMenage()
+  currentUtilisateur = new Utilisateur()
   userFile: any;
   public message!: string;
   constructor(
@@ -33,6 +33,8 @@ export class ModifierFemmeDeMenageComponent
       mdp: new FormControl('', [Validators.required]),
       adresse: new FormControl('', [Validators.required]),
       telephone: new FormControl('', [Validators.required]),
+      confirmPassword: ['', Validators.required],
+    role: ['', Validators.required],
      
     };
     this.updateForm = this.fb.group(formControles);
@@ -56,13 +58,27 @@ export class ModifierFemmeDeMenageComponent
   get telephone() {
     return this.updateForm.get('telephone');
   }
+  get confirmPassword() { return this.updateForm.get('confirmPassword'); }
+get role() { return this.updateForm.get('role'); }
+telephoneValidator(control: FormControl): { [key: string]: any } | null {
+  const telephonePattern = /^(?:\s?|\+?[\d*\/\- ]{8,})$/;
+  const valid = telephonePattern.test(control.value);
+  return valid ? null : { invalidTelephone: true };
+}
 
-
-
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('mdp').value;
+    const confirmPassword = formGroup.get('confirmPassword').value;
+    if (password !== confirmPassword) {
+      formGroup.get('confirmPassword').setErrors({ mismatch: true });
+    } else {
+      formGroup.get('confirmPassword').setErrors(null);
+    }
+  }
   ngOnInit(): void {
     let idEvent = this.router.snapshot.params['id'];
     this.id = idEvent;
-    this.service.findFemmeDeMenageById(idEvent).subscribe((result) => {
+    this.service.findUtilisateurById(idEvent).subscribe((result) => {
       let event = result;
       console.log(event);
       this.updateForm.patchValue({
@@ -71,22 +87,24 @@ export class ModifierFemmeDeMenageComponent
         email: event.email,
         adresse: event.adresse,
         mdp: event.mdp,
-        telephone: event.telephone, });}); }
-  updateFemmeDeMenage() {
+        telephone: event.telephone,
+        role: event.role });}); }
+  updateUtilisateur() {
     let data = this.updateForm.value;
-    let femmeDM =new FemmeDeMenage(
+    let utilisateur =new Utilisateur(
       this.id,
       data.nom,
       data.prenom,
       data.email,
-      data.mdp,
       data.adresse,
-      data.telephone, );
-    console.log(femmeDM);
+      data.mdp,
+      data.telephone, 
+      data.confirmPassword,
+      data.role,);
+    console.log(utilisateur);
     console.log(data);
-    this.service.updateFemmeDeMenage(this.id,femmeDM).subscribe((res) => {
+    this.service.updateUtilisateur(this.id,utilisateur).subscribe((res) => {
       console.log(res);
       this.route.navigate(['/listFemmeDeMenage'])}); }
-
 
 }

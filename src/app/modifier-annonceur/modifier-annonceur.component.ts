@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Annonceur } from '../Entites/Annonceur.Entites';
 import { CrudService } from '../service/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Utilisateur } from '../Entites/Utilisateur.Entites';
 
 @Component({
   selector: 'app-modifier-annonceur',
@@ -13,7 +13,7 @@ export class ModifierAnnonceurComponent
 {
   updateForm: FormGroup;
   id: number;
-  currentAnnonceur = new Annonceur()
+  currentUtilisateur = new Utilisateur()
   userFile: any;
   public message!: string;
   constructor(
@@ -33,6 +33,8 @@ export class ModifierAnnonceurComponent
       mdp: new FormControl('', [Validators.required]),
       adresse: new FormControl('', [Validators.required]),
       telephone: new FormControl('', [Validators.required]),
+      confirmPassword: ['', Validators.required],
+    role: ['', Validators.required],
      
     };
     this.updateForm = this.fb.group(formControles);
@@ -56,13 +58,27 @@ export class ModifierAnnonceurComponent
   get telephone() {
     return this.updateForm.get('telephone');
   }
+  get confirmPassword() { return this.updateForm.get('confirmPassword'); }
+get role() { return this.updateForm.get('role'); }
+telephoneValidator(control: FormControl): { [key: string]: any } | null {
+  const telephonePattern = /^(?:\s?|\+?[\d*\/\- ]{8,})$/;
+  const valid = telephonePattern.test(control.value);
+  return valid ? null : { invalidTelephone: true };
+}
 
-
-
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('mdp').value;
+    const confirmPassword = formGroup.get('confirmPassword').value;
+    if (password !== confirmPassword) {
+      formGroup.get('confirmPassword').setErrors({ mismatch: true });
+    } else {
+      formGroup.get('confirmPassword').setErrors(null);
+    }
+  }
   ngOnInit(): void {
     let idEvent = this.router.snapshot.params['id'];
     this.id = idEvent;
-    this.service.findAnnonceurById(idEvent).subscribe((result) => {
+    this.service.findUtilisateurById(idEvent).subscribe((result) => {
       let event = result;
       console.log(event);
       this.updateForm.patchValue({
@@ -72,21 +88,21 @@ export class ModifierAnnonceurComponent
         adresse: event.adresse,
         mdp: event.mdp,
         telephone: event.telephone, });}); }
-  updateAnnonceur() {
+  updateUtilisateur() {
     let data = this.updateForm.value;
-    let annonceur =new Annonceur(
+    let utilisateur =new Utilisateur(
       this.id,
-      data.nom,
-      data.prenom,
-      data.email,
-      data.adresse,
-      data.mdp,
-      data.telephone, );
-    console.log(annonceur);
+        data.nom,
+        data.prenom,
+        data.email,
+        data.date_de_naissance,
+        data.telephone,
+        data.adresse,
+        data.mdp, 
+        data.role,);
+    console.log(utilisateur);
     console.log(data);
-    this.service.updateAnnonceur(this.id,annonceur).subscribe((res) => {
+    this.service.updateUtilisateur(this.id,utilisateur).subscribe((res) => {
       console.log(res);
-      this.route.navigate(['/listAnnonceur'])}); }
-
-
+      this.route.navigate(['/listUtilisateur'])}); }
 }

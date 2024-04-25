@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Annonceur } from '../Entites/Annonceur.Entites';
 import { CrudService } from '../service/crud.service';
 import { Router } from '@angular/router';
+import { Utilisateur } from '../Entites/Utilisateur.Entites';
 
 @Component({
   selector: 'app-list-annonceur',
@@ -9,15 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-annonceur.component.css']
 })
 export class ListAnnonceurComponent {
-  listAnnonceur: Annonceur[];
+  listUtilisateur: Utilisateur[];
   p:number=1;
   collection:any[]
   constructor(private service:CrudService,private router:Router ) { }
   //supprimer
-  Deleteannonceur(annonceur: Annonceur){
-    if(confirm("Voulez vous supprimer cet annonceur avec l'ID " + annonceur.id + " ?")) {
+  Deleteutilisateur(utilisateur: Utilisateur){
+    if(confirm("Voulez vous supprimer cet utilisateur avec l'ID " + utilisateur.id + " ?")) {
      
-      this.service.onDeleteAnnonceur(annonceur.id).subscribe(() => {
+      this.service.onDeleteUtilisateur(utilisateur.id).subscribe(() => {
         this.router.navigate(['/listAnnonceur']).then(() => {
           window.location.reload()
         })
@@ -25,42 +25,41 @@ export class ListAnnonceurComponent {
    
   }
 }
-updateAnnonceuretat(annonceur:Annonceur){
-  
-  console.log(annonceur);
+updateUtilisateuretat(utilisateur:Utilisateur){
+  console.log(utilisateur);
 
-  let index=this.listAnnonceur.indexOf(annonceur);
-  if(annonceur.etat==true)
-  { if(confirm("Voulez vous disactiver cet compte avec l'ID " + annonceur.id + " ?")) {let newAnnonceur =new Annonceur(annonceur.id,annonceur.nom,annonceur.prenom,annonceur.email,annonceur.adresse,annonceur.mdp,annonceur.telephone,false)
-this.service.updateAnnonceur(annonceur.id,newAnnonceur).subscribe
+  let index=this.listUtilisateur.indexOf(utilisateur);
+  if(utilisateur.etat==true)
+  { if(confirm("Voulez vous disactiver cet compte avec l'ID " + utilisateur.id + " ?")) {let newUtilisateur =new Utilisateur(utilisateur.id,utilisateur.nom,utilisateur.prenom,utilisateur.email,utilisateur.date_de_naissance,utilisateur.telephone,utilisateur.adresse,utilisateur.mdp,utilisateur.role,false)
+this.service.updateUtilisateur(utilisateur.id,newUtilisateur).subscribe
 (
   res=>{console.log(res)
-  this.listAnnonceur[index]=newAnnonceur
+  this.listUtilisateur[index]=newUtilisateur
   },
   err=>console.log(err)
 )
   }}
  
   else{
-    if(confirm("Voulez vous activer cet compte avec l'ID " + annonceur.id + " ?")) {
+    if(confirm("Voulez vous activer cet compte avec l'ID " + utilisateur.id + " ?")) {
 
-    let newAnnonceur=new Annonceur(annonceur.id,annonceur.nom,annonceur.prenom,annonceur.email,annonceur.adresse,annonceur.mdp,annonceur.telephone,true)
-    this.service.updateAnnonceur(annonceur.id,newAnnonceur).subscribe
+    let newUtilisateur=new Utilisateur(utilisateur.id,utilisateur.nom,utilisateur.prenom,utilisateur.email,utilisateur.date_de_naissance,utilisateur.telephone,utilisateur.adresse,utilisateur.mdp,utilisateur.role,true)
+    this.service.updateUtilisateur(utilisateur.id,newUtilisateur).subscribe
   (
     res=>{console.log(res)
-    this.listAnnonceur[index]=newAnnonceur
+    this.listUtilisateur[index]=newUtilisateur
     },
     err=>console.log(err)
   )}
 
   }
-  
+
 
 
 }
   ngOnInit(): void {
-    this.service.getAnnonceur().subscribe(annonceur => {
-      this.listAnnonceur = annonceur
+    this.service.getUtilisateur().subscribe(utilisateur => {
+      this.listUtilisateur = utilisateur
     })
   }
 }

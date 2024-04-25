@@ -88,33 +88,43 @@
                                                 </th>
                                                 <th>ID</th>
                                                 <th>Nom</th>
-                                                <th>Prenom</th>
+                                                <th>Prénom</th>
                                                 <th>Email</th>
-                                                <th>Adresse</th>
                                                 <th>Numéro téléphone</th>
+                                                <th>Adresse</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr *ngFor="let femmeDM of listFemmeDeMenage">
-                                                <td scope="row">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                                                    </div>
-                                                </td>
-                                                <td>{{ femmeDM.id }}</td>
-                                                <td>{{ femmeDM.nom }}</td>
-                                                <td>{{ femmeDM.prenom }}</td>
-                                                <td>{{ femmeDM.email }}</td>
-                                                <td>{{ femmeDM.adresse }}</td>
-                                                <td>{{ femmeDM.telephone }}</td>
-                                                <td>
-                                                    <div class="d-flex gap-2">
-                                                        <a href="modifierFemmeDeMenage/{{femmeDM.id}}" type="submit" class="btn btn-sm btn-success">Modifier <i class="ri-edit-fill"></i></a>
-                                                        <button type="submit" (click)="DeletefemmeDM(femmeDM)" class="btn btn-sm btn-danger remove-item-btn">Supprimer <i class="ri-delete-bin-6-fill"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody *ngFor="let utilisateur of listUtilisateur | paginate:{ itemsPerPage: 10, currentPage: p }">
+                                            
+                                                <tr  *ngIf="utilisateur.role === 'Femme de menage'">
+                                                    <td scope="row">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ utilisateur.id }}</td>
+                                                    <td>{{ utilisateur.nom }}</td>
+                                                    <td>{{ utilisateur.prenom }}</td>
+                                                    <td>{{ utilisateur.email }}</td>
+                                                    <td>{{ utilisateur.telephone }}</td>
+                                                    <td>{{ utilisateur.adresse }}</td>
+                                                    
+                                                    
+                                                    <td>
+                                                        <div class="d-flex gap-2">
+                                                            <div class="card card-animate" ><button *ngIf="!utilisateur.etat" class="btn btn-sm btn-light" (click)="updateUtilisateuretat(utilisateur)">
+                                                                <i class="mdi-account-minus"></i>
+                                                             </button></div>
+                                                             <div class="card card-animate" ><button *ngIf="utilisateur.etat" class="btn btn-sm btn-secondary" (click)="updateUtilisateuretat(utilisateur)">
+                                                              <i class="mdi-account-lock"></i>      
+                                                             </button></div>
+                                                            <div class="card card-animate" ><a href="modifierFemmeDeMenage/{{utilisateur.id}}" type="submit" class="btn btn-sm btn-success">Modifier <i class="ri-edit-fill"></i></a></div>
+                                                            <div class="card card-animate" ><button type="submit" (click)="Deleteutilisateur(utilisateur)" class="btn btn-sm btn-danger remove-item-btn">Supprimer <i class="ri-delete-bin-6-fill"></i></button></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                           
                                         </tbody>
                                     </table>
                                 </div>

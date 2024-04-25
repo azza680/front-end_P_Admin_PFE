@@ -91,40 +91,44 @@
                                                 <th>Nom</th>
                                                 <th>Prénom</th>
                                                 <th>Email</th>
-                                                <th>Adresse</th>
                                                 <th>Numéro téléphone</th>
+                                                <th>Adresse</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr *ngFor="let annonceur of listAnnonceur |paginate:{itemsPerPage:10,currentPage:p} ">
+                                        <tbody *ngFor="let utilisateur of listUtilisateur | paginate:{ itemsPerPage: 10, currentPage: p }">
+                                            
+                                            <tr  *ngIf="utilisateur.role === 'Propriétaire'">
                                                 <td scope="row">
                                                     <div class="form-check">
                                                         <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
                                                     </div>
                                                 </td>
-                                                <td>{{ annonceur.id }}</td>
-                                                <td>{{ annonceur.nom }}</td>
-                                                <td>{{ annonceur.prenom }}</td>
-                                                <td>{{ annonceur.email }}</td>
-                                                <td>{{ annonceur.adresse }}</td>
-                                                <td>{{ annonceur.telephone }}</td>
+                                                <td>{{ utilisateur.id }}</td>
+                                                <td>{{ utilisateur.nom }}</td>
+                                                <td>{{ utilisateur.prenom }}</td>
+                                                <td>{{ utilisateur.email }}</td>
+                                                <td>{{ utilisateur.telephone }}</td>
+                                                <td>{{ utilisateur.adresse }}</td>
+                                                
+                                                
                                                 <td>
                                                     <div class="d-flex gap-2">
-                                                        <button *ngIf="!annonceur.etat" class="btn btn-sm btn-secondary" (click)="updateAnnonceuretat(annonceur)">
-                                                            <i class="bx bx-lock"></i>
-                                                         </button>
-                                                         <button *ngIf="annonceur.etat" class="btn btn-sm btn-secondary" (click)="updateAnnonceuretat(annonceur)">
-                                                          <i class="bx bx-check"></i>      
-                                                         </button>
-                                                        <a href="modifierAnnonceur/{{annonceur.id}}" type="submit" class="btn btn-sm btn-success">Modifier <i class="ri-edit-fill"></i></a>
-                                                        <button type="submit" (click)="Deleteannonceur(annonceur)" class="btn btn-sm btn-danger remove-item-btn">Supprimer <i class="ri-delete-bin-6-fill"></i></button>
+                                                        <div class="card card-animate" ><button *ngIf="!utilisateur.etat" class="btn btn-sm btn-light" (click)="updateUtilisateuretat(utilisateur)">
+                                                            <i class="mdi-account-minus"></i>
+                                                         </button></div>
+                                                         <div class="card card-animate" ><button *ngIf="utilisateur.etat" class="btn btn-sm btn-secondary" (click)="updateUtilisateuretat(utilisateur)">
+                                                          <i class="mdi-account-lock"></i>      
+                                                         </button></div>
+                                                        <div class="card card-animate" ><a href="modifierAnnonceur/{{utilisateur.id}}" type="submit" class="btn btn-sm btn-success">Modifier <i class="ri-edit-fill"></i></a></div>
+                                                        <div class="card card-animate" ><button type="submit" (click)="Deleteutilisateur(utilisateur)" class="btn btn-sm btn-danger remove-item-btn">Supprimer <i class="ri-delete-bin-6-fill"></i></button></div>
                                                     </div>
                                                 </td>
                                             </tr>
+                                        
                                         </tbody>
                                     </table>
-                                    <a href="ajouterAnnoceur" type="submit" class="btn btn-primary">Ajouter Annoceur</a>
+                                    <a href="ajouterAnnonceur"  class="btn btn-primary">Ajouter Annoceur</a>
                                     <pagination-controls style="text-align: right; color: #eb2f64; "  (pageChange)="p = $event"></pagination-controls>
 
                                 </div>
