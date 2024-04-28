@@ -85,24 +85,24 @@ export class AjouterUtilisateurComponent {
         detail: 'Veuillez remplir tous les champs obligatoires.',
         summary: 'Champs obligatoires manquants'
       });
-    } else {
+    } 
+    else {
       // Envoyez l'objet Utilisateur au service pour ajout
       
       this.service.addUtilisateur(utilisateur).subscribe(
+        
         res => {
           console.log(res);
           this.toast.success({
-            detail: `${formData.role} a été ajouté avec succès.`,
-            summary: 'Succès'
+            detail: 'Succes Message',
+            summary: ' est ajouté avec succés',
           });
-          this.router.navigate(['/listUtilisateur']);
+
+          
         },
         err => {
           console.log(err);
-          this.toast.error({
-            detail: 'Une erreur est survenue lors de l\'ajout de l\'utilisateur. Veuillez réessayer plus tard.',
-            summary: 'Erreur'
-          });
+          this.router.navigate(['/verification']);
         }
       );
     }

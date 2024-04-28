@@ -23,6 +23,7 @@ import { AuthGuard } from './service/auth.service';
 import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
 import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.component';
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
+import { VrificationComponent } from './vrification/vrification.component';
 
 
 const routes: Routes = [
@@ -47,7 +48,9 @@ const routes: Routes = [
   {path:'listplanification',component:ListPlanificationComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
   {path:'',component:HomeComponent,canActivate:[AuthGuard]},
-  {path:'modifierUtilisateur/:id',component:ModifierUtilisateurComponent,canActivate:[AuthGuard]}
+  {path:'modifierUtilisateur/:id',component:ModifierUtilisateurComponent,canActivate:[AuthGuard]},
+  {path:'verification',component:VrificationComponent,canActivate:[AuthGuard]}
+
 
   
   

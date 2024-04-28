@@ -96,8 +96,8 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngFor="let utilisateur of listUtilisateur | paginate:{ itemsPerPage: 10, currentPage: p }">
-                                                <tr  *ngIf="utilisateur.role === 'Vacancier'">
+                                        <tbody *ngFor="let utilisateur of listUtilisateur | paginate:{ itemsPerPage: 50, currentPage: p }">
+                                                <tr  *ngIf="utilisateur.role === 'Vacancier' ">
                                                     <td scope="row">
                                                         <div class="form-check">
                                                             <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">

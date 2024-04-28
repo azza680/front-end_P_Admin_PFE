@@ -33,6 +33,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
 import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.component';
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
+import { VrificationComponent } from './vrification/vrification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,8 @@ import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-ut
     ProfilComponent,
     AjouterUtilisateurComponent,
     ListUtilisateurComponent,
-    ModifierUtilisateurComponent
+    ModifierUtilisateurComponent,
+    VrificationComponent
   ],
   imports: [
     BrowserModule,
