@@ -96,7 +96,7 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngFor="let utilisateur of listUtilisateur | paginate:{ itemsPerPage: 10, currentPage: p }">
+                                        <tbody *ngFor="let utilisateur of listUtilisateur  ">
                                             
                                             <tr  *ngIf="utilisateur.role === 'Propriétaire'">
                                                 <td scope="row">

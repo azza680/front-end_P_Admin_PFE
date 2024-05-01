@@ -24,6 +24,8 @@ export class ListUtilisateurComponent {
       })
    
   }
+
+  
 }
 updateUtilisateuretat(utilisateur:Utilisateur){
   console.log(utilisateur);
