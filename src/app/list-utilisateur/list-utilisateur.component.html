@@ -113,11 +113,11 @@
                                                 <td>{{ utilisateur.role }}</td>
                                                 <td>
                                                     <div class="d-flex gap-2">
-                                                        <div class="card card-animate" ><button *ngIf="!utilisateur.etat" class="btn btn-sm btn-light" (click)="updateUtilisateuretat(utilisateur)">
-                                                            <i class="mdi-account-minus"></i>
-                                                         </button></div>
-                                                         <div class="card card-animate" ><button *ngIf="utilisateur.etat" class="btn btn-sm btn-secondary" (click)="updateUtilisateuretat(utilisateur)">
-                                                          <i class="mdi-account-lock"></i>      
+                                                        <div class="card card-animate" ><button *ngIf="!utilisateur.etat" class="btn btn-sm" (click)="updateUtilisateuretat(utilisateur)">
+                                                            <i class="ri-lock-2-fill"></i>
+                                                         </button>
+                                                         <button *ngIf="utilisateur.etat" class="btn btn-sm" (click)="updateUtilisateuretat(utilisateur)">
+                                                            <i class="ri-lock-unlock-fill"></i>      
                                                          </button></div>
                                                         <div class="card card-animate" ><a href="modifierUtilisateur/{{utilisateur.id}}"  class="btn btn-sm btn-success">Modifier <i class="ri-edit-fill"></i></a></div>
                                                         <div class="card card-animate" ><button type="submit" (click)="Deleteutilisateur(utilisateur)" class="btn btn-sm btn-danger remove-item-btn">Supprimer <i class="ri-delete-bin-6-fill"></i></button></div>

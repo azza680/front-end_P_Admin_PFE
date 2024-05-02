@@ -68,7 +68,7 @@ export class CrudService {
     return this.http.post<any>(this.loginUserUrl, utilisateur);
   }
   onDeleteUtilisateur(id : number){
-    const url =`${this.apiUrl+"/Utilisateur"}/${id}` 
+    const url =`${this.apiUrl+"/Utilisateur"}/${id}`
     return this.http.delete(url)
   }
   getUtilisateur(): Observable<Utilisateur[]>{
