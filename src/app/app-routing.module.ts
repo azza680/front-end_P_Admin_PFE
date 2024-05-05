@@ -24,6 +24,7 @@ import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utili
 import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.component';
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 import { VrificationComponent } from './vrification/vrification.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 const routes: Routes = [
@@ -49,7 +50,8 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'',component:HomeComponent,canActivate:[AuthGuard]},
   {path:'modifierUtilisateur/:id',component:ModifierUtilisateurComponent,canActivate:[AuthGuard]},
-  {path:'verification',component:VrificationComponent,canActivate:[AuthGuard]}
+  {path:'verification',component:VrificationComponent,canActivate:[AuthGuard]},
+  {path:'profil',component:ProfilComponent}
 
 
   
