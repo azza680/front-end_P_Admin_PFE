@@ -34,6 +34,7 @@ import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utili
 import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.component';
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 import { VrificationComponent } from './vrification/vrification.component';
+import { ModifierprofilComponent } from './modifierprofil/modifierprofil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { VrificationComponent } from './vrification/vrification.component';
     AjouterUtilisateurComponent,
     ListUtilisateurComponent,
     ModifierUtilisateurComponent,
-    VrificationComponent
+    VrificationComponent,
+    ModifierprofilComponent
   ],
   imports: [
     BrowserModule,
