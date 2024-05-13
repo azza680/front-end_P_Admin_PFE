@@ -5,6 +5,7 @@ export class Contact{
         public sujet?:string,
         public msg?:string,
         public telephone?:string,
+        public repondre?:string,
         public date ?: Date ,
         
     ){}
