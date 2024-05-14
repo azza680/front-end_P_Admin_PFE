@@ -35,6 +35,7 @@ import { ListUtilisateurComponent } from './list-utilisateur/list-utilisateur.co
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 import { VrificationComponent } from './vrification/vrification.component';
 import { ModifierprofilComponent } from './modifierprofil/modifierprofil.component';
+import { ListeannonceComponent } from './listeannonce/listeannonce.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { ModifierprofilComponent } from './modifierprofil/modifierprofil.compone
     ListUtilisateurComponent,
     ModifierUtilisateurComponent,
     VrificationComponent,
-    ModifierprofilComponent
+    ModifierprofilComponent,
+    ListeannonceComponent
   ],
   imports: [
     BrowserModule,

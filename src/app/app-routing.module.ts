@@ -26,6 +26,7 @@ import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-ut
 import { VrificationComponent } from './vrification/vrification.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ModifierprofilComponent } from './modifierprofil/modifierprofil.component';
+import { ListeannonceComponent } from './listeannonce/listeannonce.component';
 
 
 const routes: Routes = [
@@ -53,7 +54,8 @@ const routes: Routes = [
   {path:'modifierUtilisateur/:id',component:ModifierUtilisateurComponent,canActivate:[AuthGuard]},
   {path:'verification',component:VrificationComponent,canActivate:[AuthGuard]},
   {path:'profil',component:ProfilComponent},
-  {path:'modifierprofil/:id',component:ModifierprofilComponent}
+  {path:'modifierprofil/:id',component:ModifierprofilComponent},
+  {path:'listeannonce',component:ListeannonceComponent}
 
 
   

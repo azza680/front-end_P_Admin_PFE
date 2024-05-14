@@ -1,4 +1,4 @@
-export class Annonce{
+export class SaveAnnonce{
     constructor(
         public id?:number,
         public nom?:string,
@@ -10,5 +10,6 @@ export class Annonce{
         public heure?:Date,
         public prix?:number,
         public nombre_chambre?:number,
+        public id_annonceur?:number,
     ){}
 }

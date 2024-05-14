@@ -5,6 +5,8 @@ import  {Observable, catchError} from 'rxjs';
 import { Contact } from '../Entites/Contact.Entites';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Utilisateur } from '../Entites/Utilisateur.Entites';
+import { Annonce } from '../Entites/Annonce.Entites';
+import { SaveAnnonce } from '../Entites/SaveAnnonce.Entites';
 
 @Injectable({
   providedIn: 'root'
@@ -89,5 +91,19 @@ export class CrudService {
      return decodeToken.data;
    }
  
+   onDeleteAnnonce(id : number){
+    const url =`${this.apiUrl+"/Annonce"}/${id}`
+    return this.http.delete(url)
+  }
+  getAnnonce(): Observable<SaveAnnonce[]>{
+    return this.http.get<SaveAnnonce[]>(this.apiUrl + "/Annonce");
+  }
+  getUtilisateurByAnnonce(id:number):Observable<Utilisateur>{const url =`${this.apiUrl+"/Annonce/get-utilisateur"}/${id}`
+  return this.http.get<any>(url);}
+  listeAnnonceByAnnonceur(id:number):Observable<Utilisateur[]>{const url =`${this.apiUrl+"/Annonce/get-all-by-id-annonceur"}/${id}`
+    return this.http.get<Utilisateur[]>(url);}
 
+    getAnnonceById(id:number): Observable<Annonce>{
+      return this.http.get<Annonce>(this.apiUrl + "/Annonce/"+id);
+    }
 }
