@@ -1092,23 +1092,24 @@
             <div class="modal-body">
               <form *ngFor="let annonce of listAnnonce">
                 <div class="mb-3">
-                  <label for="inputHeureDisponible" class="form-label">Heure disponible</label>
-                  <input type="string" class="form-control" id="inputHeureDisponible" placeholder="Entrez l'heure disponible"formControlName="">
+                  <label for="titre" class="form-label">titre</label>
+                  <input type="string" class="form-control" id="titre" placeholder="Entrez titre"formControlName="titre">
                 </div>
                 <div class="mb-3">
-                  <label for="inputJour" class="form-label">Jour</label>
-                  <input type="date" class="form-control" id="inputJour" placeholder="Entrez le jour"formControlName="">
+                  <label for="nom" class="form-label">Id de l'annoncer</label>
+                  <input type="date" class="form-control" id="nom" placeholder="Entrez le jour"formControlName="id_annonceur">
                 </div>
                 <div class="mb-3">
-                  <label for="inputAdresse" class="form-label">Adresse</label>
-                  <input type="text" class="form-control" id="inputAdresse" placeholder="Entrez l'adresse"formControlName="">
+                  <label for="nom" class="form-label">Nom de l'annoncer</label>
+                  <input type="date" class="form-control" id="nom" placeholder="Entrez le jour"formControlName="nom">
                 </div>
                 <div class="mb-3">
-                  <label for="inputPrixHeure" class="form-label">Prix par heure</label>
-                  <input type="number" class="form-control" id="inputPrixHeure" placeholder="Entrez le prix par heure"formControlName="">
+                  <label for="prenom" class="form-label">prenom de l'annonceur</label>
+                  <input type="text" class="form-control" id="nom" placeholder="Entrez prenom"formControlName="prenom">
                 </div>
+               
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">confirmer</button>
+                  <button type="button" class="btn btn-secondary" >confirmer</button>
                   <button type="button" class="btn btn-primary">non-confirmer</button>
         
                 </div>
