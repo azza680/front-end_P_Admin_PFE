@@ -5,6 +5,7 @@ import { Annonce } from '../Entites/Annonce.Entites';
 import { Utilisateur } from '../Entites/Utilisateur.Entites';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { NgToastService } from 'ng-angular-popup';
+import { SaveAnnonce } from '../Entites/SaveAnnonce.Entites';
 
 @Component({
   selector: 'app-listeannonce',
@@ -57,8 +58,8 @@ export class ListeannonceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getAnnonce().subscribe((annonces: Annonce[]) => {
-      this.listAnnonce = annonces;
+    this.service.getAnnonce().subscribe((annonce: Annonce[]) => {
+      this.listAnnonce = annonce;
     });
    
     let idEvent = this.router.snapshot.params['id'];

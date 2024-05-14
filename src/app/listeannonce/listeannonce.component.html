@@ -1084,110 +1084,189 @@
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Annonce</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Annonce</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div *ngFor="let annonce of listAnnonce">
+                        <section class="mt-4">
+                            <div class="col-lg-8">
+                                <div class="card border-light mb-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Type d'hébergement :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.type_d_hebergement }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Nombre de voyageurs :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.nb_voyageur }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Nombre de chambres :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.nb_chamber }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Nombre de lits :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.nb_lits }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Nombre de salles de bain :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.nb_salles }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Équipements :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li >{{ annonce.equipement }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Équipements spéciaux :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li >{{ annonce.equipement_specail }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Équipements de sécurité :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li >{{ annonce.equipement_securite }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Image :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.image }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Titre :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.titre }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Pays :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.pays }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Ville :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.ville }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Code postal :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.code_postale }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Heure de départ :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.heure_depart }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Heure d'arrivée :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.heure_arriver }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Date :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.date }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0 fw-bold">Vérification :</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">{{ annonce.verification }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" >confirmer</button>
+                                            <button type="button" class="btn btn-primary">non_confirmer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+               
+                </div>
             </div>
-            <div class="modal-body">
-              <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()">
-                <div class="mb-3">
-                  <label for="id" class="form-label">ID de l'annonce</label>
-                  <input type="string" class="form-control" id="id" placeholder="Entrez l'ID de l'annonce" formControlName="id">
-                </div>
-                <div class="mb-3">
-                  <label for="type_d_hebergement" class="form-label">Type d'hébergement</label>
-                  <input type="text" class="form-control" id="type_d_hebergement" placeholder="Entrez le type d'hébergement" formControlName="type_d_hebergement">
-                </div>
-                <div class="mb-3">
-                  <label for="nb_voyageur" class="form-label">Nombre de voyageurs</label>
-                  <input type="number" class="form-control" id="nb_voyageur" placeholder="Entrez le nombre de voyageurs" formControlName="nb_voyageur">
-                </div>
-                <div class="mb-3">
-                  <label for="nb_chamber" class="form-label">Nombre de chambres</label>
-                  <input type="number" class="form-control" id="nb_chamber" placeholder="Entrez le nombre de chambres" formControlName="nb_chamber">
-                </div>
-                <div class="mb-3">
-                  <label for="nb_lits" class="form-label">Nombre de lits</label>
-                  <input type="number" class="form-control" id="nb_lits" placeholder="Entrez le nombre de lits" formControlName="nb_lits">
-                </div>
-                <div class="mb-3">
-                  <label for="nb_salles" class="form-label">Nombre de salles de bain</label>
-                  <input type="number" class="form-control" id="nb_salles" placeholder="Entrez le nombre de salles de bain" formControlName="nb_salles">
-                </div>
-                <div class="mb-3">
-                  <label for="equipement" class="form-label">Équipement</label>
-                  <input type="text" class="form-control" id="equipement" placeholder="Entrez l'équipement" formControlName="equipement">
-                </div>
-                <div class="mb-3">
-                  <label for="equipement_specail" class="form-label">Équipement spécial</label>
-                  <input type="text" class="form-control" id="equipement_specail" placeholder="Entrez l'équipement spécial" formControlName="equipement_specail">
-                </div>
-                <div class="mb-3">
-                  <label for="equipement_securite" class="form-label">Équipement de sécurité</label>
-                  <input type="text" class="form-control" id="equipement_securite" placeholder="Entrez l'équipement de sécurité" formControlName="equipement_securite">
-                </div>
-                <div class="mb-3">
-                  <label for="image" class="form-label">Image</label>
-                  <input type="text" class="form-control" id="image" placeholder="Entrez l'URL de l'image" formControlName="image">
-                </div>
-                <div class="mb-3">
-                  <label for="titre" class="form-label">Titre</label>
-                  <input type="text" class="form-control" id="titre" placeholder="Entrez le titre" formControlName="titre">
-                </div>
-                <div class="mb-3">
-                  <label for="description" class="form-label">Description</label>
-                  <textarea class="form-control" id="description" placeholder="Entrez la description" formControlName="description"></textarea>
-                </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="reduction_semaine" formControlName="reduction_semaine">
-                  <label class="form-check-label" for="reduction_semaine">Réduction semaine</label>
-                </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="reduction_mois" formControlName="reduction_mois">
-                  <label class="form-check-label" for="reduction_mois">Réduction mois</label>
-                </div>
-                <div class="mb-3">
-                  <label for="prix" class="form-label">Prix</label>
-                  <input type="number" class="form-control" id="prix" placeholder="Entrez le prix" formControlName="prix">
-                </div>
-                <div class="mb-3">
-                  <label for="pays" class="form-label">Pays</label>
-                  <input type="text" class="form-control" id="pays" placeholder="Entrez le pays" formControlName="pays">
-                </div>
-                <div class="mb-3">
-                  <label for="ville" class="form-label">Ville</label>
-                  <input type="text" class="form-control" id="ville" placeholder="Entrez la ville" formControlName="ville">
-                </div>
-                <div class="mb-3">
-                  <label for="code_postale" class="form-label">Code postal</label>
-                  <input type="text" class="form-control" id="code_postale" placeholder="Entrez le code postal" formControlName="code_postale">
-                </div>
-                <div class="mb-3">
-                  <label for="heure_depart" class="form-label">Heure de départ</label>
-                  <input type="text" class="form-control" id="heure_depart" placeholder="Entrez l'heure de départ" formControlName="heure_depart">
-                </div>
-                <div class="mb-3">
-                  <label for="heure_arriver" class="form-label">Heure d'arrivée</label>
-                  <input type="text" class="form-control" id="heure_arriver" placeholder="Entrez l'heure d'arrivée" formControlName="heure_arriver">
-                </div>
-                <div class="mb-3">
-                  <label for="date" class="form-label">Date</label>
-                  <input type="text" class="form-control" id="date" placeholder="Entrez la date" formControlName="date">
-                </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="verification" formControlName="verification">
-                  <label class="form-check-label" for="verification">Vérification</label>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary">Confirmer</button>
-                  <button type="button" class="btn btn-primary">Non-confirmer</button>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
       
     
 </body>
