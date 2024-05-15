@@ -15,8 +15,10 @@ import { SaveAnnonce } from '../Entites/SaveAnnonce.Entites';
 export class ListeannonceComponent implements OnInit {
   messageCommande = "";
   annonce: Annonce;
+  userDetails: Utilisateur;
+  utilisateurs: Utilisateur[];
   listAnnonce: Annonce[];
-  annonceur: Utilisateur;
+  annonceurs: { [key: number]: Utilisateur } = {};
   p: number = 1;
   nbannonce: number;
   id: number;
@@ -29,7 +31,11 @@ export class ListeannonceComponent implements OnInit {
     private route: Router,
     private router: ActivatedRoute,
     private toast: NgToastService,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    
+
     this.annonceForm = this.fb.group({ 
       id: ['', Validators.required],
       type_d_hebergement: ['', Validators.required],
@@ -55,34 +61,41 @@ export class ListeannonceComponent implements OnInit {
       date: ['', Validators.required],
       verification: [false]
     });
+
+    this.loadAnnoncesWithUsers();
+
+    this.id = this.router.snapshot.params['id'];
+    if (this.id) {
+      this.service.getAnnonceById(this.id).subscribe(annonce => {
+        this.annonce = annonce;
+        this.annonceForm.patchValue(annonce);
+      });
+    }
   }
 
-  ngOnInit(): void {
-    this.service.getAnnonce().subscribe((annonce: Annonce[]) => {
-      this.listAnnonce = annonce;
-    });
-   
-    let idEvent = this.router.snapshot.params['id'];
-    this.id = idEvent;
-    console.log(this.id);
-    console.log("hatha annonceur :", this.annonceur);
-    console.log("hatha list annonce:", this.listAnnonce);
-
-    this.service.getUtilisateurByAnnonce(this.id).subscribe(annonceur => {
-      this.annonceur = annonceur;
-      this.service.listeAnnonceByAnnonceur(annonceur.id).subscribe(listAnnonce => {
-        this.nbannonce = listAnnonce.length;
-        console.log("hatha list annonce:", this.listAnnonce);
+  loadAnnoncesWithUsers(): void {
+    this.service.getAnnonce().subscribe((annonces: Annonce[]) => {
+      this.listAnnonce = annonces;
+      this.listAnnonce.forEach(annonce => {
+        this.service.getUtilisateurByAnnonce(annonce.id).subscribe(
+          annonceur => {
+            this.annonceurs[annonce.id] = annonceur;
+            console.log('Utilisateur data for annonce ID', annonce.id, ':', annonceur);
+          },
+          error => {
+            console.error('Error fetching utilisateur by annonce ID:', error);
+          }
+        );
       });
-      console.log("hatha annonceur :", annonceur);
     });
+  }
 
-    this.service.getAnnonceById(this.id).subscribe(annonce => {
-      this.annonce = annonce;
-      console.log("hatha id annonce :", annonce.id);
-      console.log("hatha annonceur :", this.annonceur);
-      this.annonceForm.patchValue(annonce);
-    });
+  
+
+    
+
+  selectAnnonce(annonce: Annonce): void {
+    this.annonce = annonce;  // Set the active annonce
   }
 
   DeleteAnnonce(annonce: Annonce): void {

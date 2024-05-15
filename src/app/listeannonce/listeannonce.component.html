@@ -79,21 +79,39 @@
                             </div>
                             <div class="card-body">
                               <div class="row row-cols-1 row-cols-md-2 g-4">
-                                <div class="col" *ngFor="let annonce of listAnnonce | paginate:{ itemsPerPage: 4, currentPage: p }">
-                                    <div class="card">
+                                <div class="col" *ngFor="let annonce of listAnnonce | paginate: { itemsPerPage: 4, currentPage: p }">
+                                  <div class="card h-100">
+                                    <img [src]="annonce.image" class="card-img-top" alt="Image de l'annonce" *ngIf="annonce.image">
                                     <div class="card-body">
                                       <h5 class="card-title">ID Annonce: {{ annonce.id }}</h5>
                                       <p class="card-text">Titre: {{ annonce.titre }}</p>
-                                     
-                      
-                                      <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-sm btn-danger" (click)="DeleteAnnonce(annonce)">
-                                          Supprimer <i class="ri-delete-bin-6-fill"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            Vérifer
-                                          </button>
+                                      <div *ngIf="annonceurs[annonce.id]">
+                                        <p class="card-text">ID Utilisateur: {{ annonceurs[annonce.id]?.id }}</p>
+                                        <p class="card-text">Nom Utilisateur: {{ annonceurs[annonce.id]?.nom }}</p>
+                                        <p class="card-text">Prenom Utilisateur: {{ annonceurs[annonce.id]?.prenom }}</p>
                                       </div>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-end">
+                                        <button  class="btn btn-sm" >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                              </svg>
+                                              
+                                         </button>
+                                         <button  class="btn btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+                                                <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
+                                                <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
+                                              </svg>
+                                         </button>
+                                      <button type="button" class="btn btn-sm btn-danger" (click)="DeleteAnnonce(annonce)">
+                                        Supprimer <i class="ri-delete-bin-6-fill"></i>
+                                      </button>
+                                      <button type="button" class="btn btn-info ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectAnnonce(annonce)">
+                                        Verification
+                                      </button>
+                                      
                                     </div>
                                   </div>
                                 </div>
@@ -102,6 +120,40 @@
                           </div>
                         </div>
                       </div>
+                      <style>
+                        .card-img-top {
+                          width: 100%;
+                          height: 200px;
+                          object-fit: cover;
+                        }
+                      
+                        .card-title {
+                          font-size: 1.25rem;
+                          font-weight: bold;
+                          margin-bottom: 0.75rem;
+                        }
+                      
+                        .card-text {
+                          font-size: 1rem;
+                          margin-bottom: 0.5rem;
+                        }
+                      
+                        .card-footer {
+                          background-color: #f8f9fa;
+                          border-top: 1px solid #e9ecef;
+                        }
+                      
+                        .btn-danger {
+                          background-color: #dc3545;
+                          border-color: #dc3545;
+                        }
+                      
+                        .btn-info {
+                          background-color: #17a2b8;
+                          border-color: #17a2b8;
+                        }
+                      </style>
+                      
                       
                       
                     
@@ -1086,13 +1138,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Annonce</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Détail de l'Annonce</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div *ngFor="let annonce of listAnnonce">
-                        <section class="mt-4">
-                            <div class="col-lg-8">
+                    <div>
+                        <section class="mt-6">
+                            <div class="col-lg-12"ngif=>
                                 <div class="card border-light mb-4">
                                     <div class="card-body">
                                         <div class="row">
@@ -1100,7 +1152,7 @@
                                                 <p class="mb-0 fw-bold">Type d'hébergement :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.type_d_hebergement }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.type_d_hebergement }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1109,7 +1161,7 @@
                                                 <p class="mb-0 fw-bold">Nombre de voyageurs :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.nb_voyageur }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.nb_voyageur }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1118,7 +1170,7 @@
                                                 <p class="mb-0 fw-bold">Nombre de chambres :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.nb_chamber }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.nb_chamber }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1127,7 +1179,7 @@
                                                 <p class="mb-0 fw-bold">Nombre de lits :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.nb_lits }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.nb_lits }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1136,7 +1188,7 @@
                                                 <p class="mb-0 fw-bold">Nombre de salles de bain :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.nb_salles }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.nb_salles }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1146,7 +1198,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <ul class="list-unstyled mb-0">
-                                                    <li >{{ annonce.equipement }}</li>
+                                                    <li >{{ annonce?.equipement }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1157,7 +1209,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <ul class="list-unstyled mb-0">
-                                                    <li >{{ annonce.equipement_specail }}</li>
+                                                    <li >{{ annonce?.equipement_specail }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1168,7 +1220,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <ul class="list-unstyled mb-0">
-                                                    <li >{{ annonce.equipement_securite }}</li>
+                                                    <li >{{ annonce?.equipement_securite }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1178,7 +1230,7 @@
                                                 <p class="mb-0 fw-bold">Image :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.image }}</p>
+                                                <img [src]="annonce?.image" class="img-fluid" alt="Image de l'annonce" *ngIf="annonce?.image">
                                             </div>
                                         </div>
                                         <hr>
@@ -1187,7 +1239,7 @@
                                                 <p class="mb-0 fw-bold">Titre :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.titre }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.titre }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1196,7 +1248,7 @@
                                                 <p class="mb-0 fw-bold">Pays :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.pays }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.pays }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1205,7 +1257,7 @@
                                                 <p class="mb-0 fw-bold">Ville :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.ville }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.ville }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1213,7 +1265,7 @@
                                                 <p class="mb-0 fw-bold">Code postal :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.code_postale }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.code_postale }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1222,7 +1274,7 @@
                                                 <p class="mb-0 fw-bold">Heure de départ :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.heure_depart }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.heure_depart }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1231,7 +1283,7 @@
                                                 <p class="mb-0 fw-bold">Heure d'arrivée :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.heure_arriver }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.heure_arriver }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -1240,18 +1292,11 @@
                                                 <p class="mb-0 fw-bold">Date :</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.date }}</p>
+                                                <p class="text-muted mb-0">{{ annonce?.date }}</p>
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <p class="mb-0 fw-bold">Vérification :</p>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ annonce.verification }}</p>
-                                            </div>
-                                        </div>
+                                        
                                         <hr>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" >confirmer</button>
