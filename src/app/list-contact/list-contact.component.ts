@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Contact } from '../Entites/Contact.Entites';
 import { CrudService } from '../service/crud.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-contact.component.css']
 })
 export class ListContactComponent {
+  @ViewChild('exampleModal') exampleModal: ElementRef;
   listContact: Contact[];
   p:number=1;
   collection:any[]
@@ -25,6 +26,7 @@ export class ListContactComponent {
    
   }
 }
+
   ngOnInit(): void {
     this.service.getContact().subscribe(contact => {
       this.listContact = contact

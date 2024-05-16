@@ -76,7 +76,8 @@ import { ListeannonceComponent } from './listeannonce/listeannonce.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgToastModule, 
-    NgxPaginationModule
+    NgxPaginationModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
