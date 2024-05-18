@@ -61,6 +61,14 @@ export class CrudService {
   getContact(): Observable<Contact[]>{
     return this.http.get<Contact[]>(this.apiUrl + "/Contact");
   }
+  updateContact(id:number,contact: Contact) {
+    const url = `${this.apiUrl+"/Contact"}/${id}`
+    return this.http.put<any>(url, contact);
+  }
+  getContactById(id : number): Observable<Contact> {
+    const url =`${this.apiUrl+"/Contact"}/${id}`
+    return this.http.get<Contact>(url)
+  }
 //UtilisateurCrud
   addUtilisateur(utilisateur:Utilisateur)
    {

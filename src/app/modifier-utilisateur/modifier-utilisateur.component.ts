@@ -88,8 +88,10 @@ export class ModifierUtilisateurComponent {
           telephone: event.telephone,
           adresse: event.adresse,
           mdp: event.mdp,
-          role: event.role, });}); }
-    updateUtilisateur() {
+          role: event.role, });}); 
+        }
+    
+        updateUtilisateur() {
       let data = this.updateForm.value;
       let utilisateur =new Utilisateur(
         this.id,
@@ -105,6 +107,7 @@ export class ModifierUtilisateurComponent {
       console.log(data);
       this.service.updateUtilisateur(this.id,utilisateur).subscribe((res) => {
         console.log(res);
-        this.route.navigate(['/listUtilisateur'])}); }
+        this.route.navigate(['/listUtilisateur'])}); 
+      }
   
 }

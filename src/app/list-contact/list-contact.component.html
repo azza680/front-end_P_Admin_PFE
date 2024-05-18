@@ -79,31 +79,30 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row row-cols-1 row-cols-md-2 g-4">
-                                        <div class="col" *ngFor="let contact of listContact |paginate:{itemsPerPage:4,currentPage:p} ">
+                                        <div class="col" *ngFor="let contact of listContact | paginate: { itemsPerPage: 4, currentPage: p }">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h5 class="card-title">{{ contact.sujet }}</h5>
-                                                    <p class="card-text">ID: {{ contact.id }}</p>
-                                                    <p class="card-text">Email: {{ contact.email }}</p>
-                                                    <p class="card-text">Message: {{ contact.msg }}</p>
-                                                    <p class="card-text">Numéro de téléphone: {{ contact.telephone }}</p>
-                                                    <p  *ngIf="contact.repondre!=null"  class="card-text">Répondre: {{ contact.repondre }}</p>
-
-                                                    <span><i class="mdi mdi-clock-outline"></i> {{ contact.date }}</span>
-                                                    <div class="d-flex justify-content-end">
-                                                        <div class="card card-animate"><button type="button" class="btn btn-sm btn-danger" (click)="Deletecontact(contact)">Supprimer <i class="ri-delete-bin-6-fill"></i></button></div>
-                                                        <div class="card card-animate"><button type="button" class="btn btn-sm btn-success" data-toggle="modal"  data-target="#exampleModal" data-whatever="@mdo">Répondre <i class="ri-edit-fill"></i></button></div>
-
+                                                    <p class="card-text"><strong>ID:</strong> {{ contact.id }}</p>
+                                                    <p class="card-text"><strong>Email:</strong> {{ contact.email }}</p>
+                                                    <p class="card-text"><strong>Message:</strong> {{ contact.msg }}</p>
+                                                    <p class="card-text"><strong>Numéro de téléphone:</strong> {{ contact.telephone }}</p>
+                                                    <p *ngIf="contact.repondre != null" class="card-text"><strong>Répondre:</strong> {{ contact.repondre }}</p>
+                                                    <p class="card-text"><i class="mdi mdi-clock-outline"></i> {{ contact.date }}</p>
+                                                    <div class="d-flex justify-content-end mt-3">
+                                                        <button type="button" class="btn btn-sm btn-danger me-2" (click)="Deletecontact(contact)">
+                                                            Supprimer <i class="ri-delete-bin-6-fill"></i>
+                                                        </button>
+                                                        <button (click)="selectContact(contact)" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            <i class="ri-edit-fill"></i> Répondre
+                                                        </button>
                                                     </div>
-                                                    
-                                                  
-                                                  
-                                                  
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div><!--end col-->
                     </div>
@@ -124,34 +123,34 @@
     </div>
     <!-- END layout-wrapper -->
     
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Répondre au sujet : {{ contact?.sujet }}</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="form-group">
-                  <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                <div class="modal-body">
+                    <form (ngSubmit)="updateContact(contact)" [formGroup]="updateForm">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="form-label"><strong>Destinataire :</strong></label>
+                            <input type="text" class="form-control-plaintext" id="recipient-name" readonly [value]="contact?.email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="repondre" class="form-label"><strong>Message : </strong></label>
+                            <textarea class="form-control" id="repondre" formControlName="repondre" rows="5">{{ contact?.repondre }}</textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
+                    </form>
                 </div>
-              </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+    
+    
       
     
 </body>
