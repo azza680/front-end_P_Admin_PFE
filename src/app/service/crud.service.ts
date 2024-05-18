@@ -95,8 +95,8 @@ export class CrudService {
     const url =`${this.apiUrl+"/Annonce"}/${id}`
     return this.http.delete(url)
   }
-  getAnnonce(): Observable<SaveAnnonce[]>{
-    return this.http.get<SaveAnnonce[]>(this.apiUrl + "/Annonce");
+  getAnnonce(): Observable<Annonce[]>{
+    return this.http.get<Annonce[]>(this.apiUrl +"/Annonce");
   }
   getUtilisateurByAnnonce(id:number):Observable<Utilisateur>{const url =`${this.apiUrl+"/Annonce/get-utilisateur"}/${id}`
   return this.http.get<any>(url);}
@@ -106,4 +106,13 @@ export class CrudService {
     getAnnonceById(id:number): Observable<Annonce>{
       return this.http.get<Annonce>(this.apiUrl + "/Annonce/"+id);
     }
+    updateAnnonce(id:number,annonce:Annonce){
+      const url = `${this.apiUrl+"/Annonce"}/${id}`
+      return this.http.put<any>(url, annonce);
+    }
+    sendEmailAnnonceur(annonceur:Utilisateur)
+    {
+      return this.http.post<any>(this.apiUrl+"/Utilisateur/send_email", annonceur);
+    }
+    
 }

@@ -4,9 +4,6 @@ export class Annonce {
       public nom?: string,
       public image?: string,
       public description?: string,
-      public adresse?: string,
-      public date_disponible?: Date,
-      public heure?: Date,
       public prix?: number,
       public nombre_chambre?: number,
       public type_d_hebergement?: string,
@@ -27,7 +24,8 @@ export class Annonce {
       public heure_depart?: string,
       public heure_arriver?: string,
       public date?: string,
-      public verification?: boolean
+      public verification?: boolean,
+      public accorde_user?:boolean,
     ) {}
   }
   
