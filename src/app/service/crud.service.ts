@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Utilisateur } from '../Entites/Utilisateur.Entites';
 import { Annonce } from '../Entites/Annonce.Entites';
 import { SaveAnnonce } from '../Entites/SaveAnnonce.Entites';
+import { Reservation } from '../Entites/Reservation.Entites';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,11 @@ export class CrudService {
       return false;
     }
   }
+  getUserDetails(){
+    let token:any=localStorage.getItem('myToken');
+    let decodeToken= this.helper.decodeToken(token);
+     return decodeToken.data;
+   }
 //ContactCrud
   onDeleteContact(id : number){
     const url =`${this.apiUrl+"/Contact"}/${id}` 
@@ -122,5 +128,41 @@ export class CrudService {
     {
       return this.http.post<any>(this.apiUrl+"/Utilisateur/send_email", annonceur);
     }
+    getReservation(): Observable<Reservation[]>{
+      return this.http.get<Reservation[]>(this.apiUrl + "/Reservation");
+    }
     
+    
+ 
+  getUtilisateurByReservation(idClient: number): Observable<Utilisateur> {
+    const url = `${this.apiUrl}/utilisateur/${idClient}`;
+    return this.http.get<Utilisateur>(url);
+  }
+
+  // Opération de lecture de l'annonce par ID de réservation
+  getAnnonceByReservation(idAnnonce: number): Observable<Annonce> {
+    const url = `${this.apiUrl}/annonce/${idAnnonce}`;
+    return this.http.get<Annonce>(url);
+  }
+  isSousAdmin(){
+
+    let token = localStorage.getItem("role");
+    
+    if (token=="Sous-administrateur") {
+      return true ;
+    } else {
+      return false;
+    }
+  }
+  isSuperAdminInIn(){
+
+    let token = localStorage.getItem("role");
+    
+    if (token=="SuperAdmin") {
+      return true ;
+    } else {
+      return false;
+    }
+  }
+  
 }

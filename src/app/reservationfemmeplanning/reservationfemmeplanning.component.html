@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
+<!-- Mirrored from themesbrand.com/velzon/html/master/tables-datatables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 16:33:28 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <title>Datatables | Velzon - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+</head>
+
+
+<body>
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <app-header></app-header>
+        <!-- removeNotificationModal -->
+        <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                            <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn w-sm btn-danger" id="delete-notification">Yes, Delete It!</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- ========== App Menu ========== -->
+        <app-menu></app-menu>
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+    </div><!-- END layout-wrapper -->
+
+    <!-- Line divider -->
+    <hr style="border-top: 1px solid #ccc; margin: 0;">
+
+    <!-- Second half of the page -->
+    <div id="second-half-content">
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                                <h4 class="mb-sm-0">List Contact</h4>
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Contact</a></li>
+                                        <li class="breadcrumb-item active">List Contact</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end page title -->
+                    <div class="row" >
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Détails</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"></h5>
+                                                    <p class="card-text"><strong>Titre de l'annonce :</strong>  </p>
+                                                    <p class="card-text"><strong>Client:</strong> </p>
+                                                    <p class="card-text"><strong>Date de Reservation :</strong> </p>
+                                                    <div class="d-flex justify-content-end mt-3">
+                                                        <!-- Contenu supplémentaire ou boutons si nécessaire -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end col-->
+                    </div>
+                    <pagination-controls style="text-align: right; color: #eb2f64;"></pagination-controls>
+                    <!--end row-->
+                </div><!-- container-fluid -->
+            </div><!-- End Page-content -->
+            <app-footer></app-footer>
+        </div><!-- end main content-->
+    </div><!-- Second half of the page -->
+</body>
+
+<!-- Mirrored from themesbrand.com/velzon/html/master/tables-datatables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 16:33:33 GMT -->
+</html>
+

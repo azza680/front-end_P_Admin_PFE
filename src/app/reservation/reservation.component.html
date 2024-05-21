@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+<head>
+    <meta charset="utf-8" />
+    <title>Datatables | Velzon - Modèle d'administration et de tableau de bord</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Modèle d'administration et de tableau de bord polyvalent premium" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- Favicon de l'application -->
+    <!-- Bootstrap CSS -->
+</head>
+
+<body>
+    <!-- Début de la page -->
+    <div id="layout-wrapper">
+        <app-header></app-header>
+
+        <!-- Modal de suppression de notification -->
+        <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+                    </div>
+                   
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- Menu de l'application -->
+        <app-menu></app-menu>
+        <!-- Fin de la barre latérale gauche -->
+        <!-- Superposition verticale -->
+        <div class="vertical-overlay"></div>
+    </div><!-- FIN layout-wrapper -->
+
+    <!-- Ligne de séparation -->
+    <hr style="border-top: 1px solid #ccc; margin: 0;">
+
+    <!-- Deuxième moitié de la page -->
+    <div id="second-half-content">
+        <!-- Début du contenu principal ici -->
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Début du titre de la page -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                                <h4 class="mb-sm-0">Liste des réservations d'annonce</h4>
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Réservation</a></li>
+                                        <li class="breadcrumb-item active">Liste des réservations d'annonce</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- fin du titre de la page -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Détails</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Titre de l'annonce</th>
+                                                    <th>Client</th>
+                                                    <th>Date de réservation</th>
+                                                    <th>Nombre de nuits</th>
+                                                    <th>Nombre de vacanciers</th>
+                                                    <th>Montant payé</th>
+                                                    <th>Date de réservation</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let reservation of Reservation">
+                                                    <td>{{ reservation.annonce.id }}</td>
+                                                    <td>{{ reservation.annonce.titre }}</td>
+                                                    <td>{{ reservation.utilisateur.nom }} {{ reservation.utilisateur.prenom }}</td>
+                                                    <td>{{ reservation.date_arrivee }} / {{ reservation.date_depart }}</td>
+                                                    <td>{{ reservation.nb_nuit }}</td>
+                                                    <td>{{ reservation.nb_vacancier }}</td>
+                                                    <td>{{ reservation.montant_paye }}</td>
+                                                    <td>{{ reservation.date }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- fin de la col -->
+                    </div><!-- fin de la rangée -->
+
+                    <pagination-controls style="text-align: right; color: #eb2f64;"></pagination-controls>
+                    <!-- fin de la rangée -->
+                </div><!-- container-fluid -->
+            </div><!-- Fin du contenu de la page -->
+            <app-footer></app-footer>
+        </div><!-- fin du contenu principal -->
+    </div><!-- Deuxième moitié de la page -->
+
+    <!-- Bootstrap JS et dépendances -->
+    
+</body>
+</html>
