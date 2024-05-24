@@ -8,6 +8,7 @@ import { Utilisateur } from '../Entites/Utilisateur.Entites';
 import { Annonce } from '../Entites/Annonce.Entites';
 import { SaveAnnonce } from '../Entites/SaveAnnonce.Entites';
 import { Reservation } from '../Entites/Reservation.Entites';
+import { ReservationFM } from '../Entites/ReservationFM.Entites';
 
 @Injectable({
   providedIn: 'root'
@@ -130,6 +131,9 @@ export class CrudService {
     }
     getReservation(): Observable<Reservation[]>{
       return this.http.get<Reservation[]>(this.apiUrl + "/Reservation");
+    }
+    getReservationFM(): Observable<ReservationFM[]>{
+      return this.http.get<ReservationFM[]>(this.apiUrl + "/ReservationFM");
     }
     
     
