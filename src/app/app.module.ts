@@ -36,6 +36,8 @@ import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-ut
 import { VrificationComponent } from './vrification/vrification.component';
 import { ModifierprofilComponent } from './modifierprofil/modifierprofil.component';
 import { ListeannonceComponent } from './listeannonce/listeannonce.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { ReservationfemmeplanningComponent } from './reservationfemmeplanning/reservationfemmeplanning.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +69,9 @@ import { ListeannonceComponent } from './listeannonce/listeannonce.component';
     ModifierUtilisateurComponent,
     VrificationComponent,
     ModifierprofilComponent,
-    ListeannonceComponent
+    ListeannonceComponent,
+    ReservationComponent,
+    ReservationfemmeplanningComponent
   ],
   imports: [
     BrowserModule,

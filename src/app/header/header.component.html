@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <div class="dropdown ms-sm-3 header-item topbar-user">
+                <div class="dropdown ms-sm-3 header-item topbar-user"*ngIf="IsloggedIn || isSuperAdminIn">
                     <button type="button" class="btn material-shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
                             <img class="rounded-circle header-profile-user" src="{{userDetails.photo}}" alt="Header Avatar">
@@ -169,7 +169,7 @@
                             <i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle" data-key="t-profil">Profil</span>
                         </a>
-                        <a class="dropdown-item" (click)="logout()"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Déconnexion</span></a>
+                        <a *ngIf="IsloggedIn ||  isSuperAdminIn" (click)="logout()" class="dropdown-item" (click)="logout()"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Déconnexion</span></a>
                     </div>
                 </div>
             </div>

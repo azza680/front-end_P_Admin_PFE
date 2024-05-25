@@ -53,7 +53,7 @@
                 </li>
     
                 <!-- Administrateur -->
-                <li class="nav-item">
+                <li class="nav-item"*ngIf="!isSousAdmin && isSuperAdminIn">
                     <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="ri-account-circle-line"></i> <span data-key="t-apps">Administrateur</span>
                     </a>
@@ -162,6 +162,24 @@
                         </ul>
                     </div>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarReservations" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarReservations">
+                        <i class="ri-calendar-event-line"></i> <span data-key="t-advance-ui">Reservation</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarReservations">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="/reservation" class="nav-link" data-key="t-chat"> Liste Reservation</a>
+                                 
+                            </li> 
+                            <li class="nav-item">
+                                <a href="/reservation_femme_planning" class="nav-link" data-key="t-chat"> Liste Reservation de femme</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                
     
                 <!-- Femme De Menage -->
                 
