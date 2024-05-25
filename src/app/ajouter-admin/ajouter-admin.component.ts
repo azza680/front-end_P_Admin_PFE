@@ -20,11 +20,12 @@ export class AjouterAdminComponent {
       ]),
       prenom: new FormControl('',[
         Validators.required,]),
-      email: new FormControl('',[
+      email: ['', [Validators.required, Validators.email]],
+        mdp: ['', [
           Validators.required,
-        Validators.email]),
-      mdp: new FormControl('',[
-        Validators.required,]),
+          Validators.minLength(8), // Au moins 8 caractères
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/) // Au moins une minuscule, une majuscule, un chiffre et un caractère spécial
+        ]],
         confirmPassword: ['', Validators.required], 
     role: new FormControl( '', [
       Validators.required,]),}

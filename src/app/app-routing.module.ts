@@ -29,14 +29,15 @@ import { ModifierprofilComponent } from './modifierprofil/modifierprofil.compone
 import { ListeannonceComponent } from './listeannonce/listeannonce.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { ReservationfemmeplanningComponent } from './reservationfemmeplanning/reservationfemmeplanning.component';
+import { AuthGuardS } from './service/authS.service';
 
 
 const routes: Routes = [
-  {path:'ajouterAdmin',component:AjouterAdminComponent,canActivate:[AuthGuard]},
+  {path:'ajouterAdmin',component:AjouterAdminComponent,canActivate:[AuthGuardS]},
   {path:'ajouterUtilisateur',component:AjouterUtilisateurComponent,canActivate:[AuthGuard]},
   {path:'listUtilisateur',component:ListUtilisateurComponent,canActivate:[AuthGuard]},
-  {path:'listAdmin',component:ListAdminComponent,canActivate:[AuthGuard]},
-  {path:'modifierAdmin/:id',component:ModiferAdminComponent,canActivate:[AuthGuard]},
+  {path:'listAdmin',component:ListAdminComponent,canActivate:[AuthGuardS]},
+  {path:'modifierAdmin/:id',component:ModiferAdminComponent,canActivate:[AuthGuardS]},
   {path:'ajouterClient',component:AjouterClientComponent,canActivate:[AuthGuard]},
   {path:'listClient',component:ListClientComponent,canActivate:[AuthGuard]},
   {path:'modifierClient/:id',component:ModifierClientComponent,canActivate:[AuthGuard]},

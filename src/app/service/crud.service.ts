@@ -174,7 +174,7 @@ export class CrudService {
 
     let token = localStorage.getItem("role");
     
-    if (token=="SuperAdmin") {
+    if (token=="Super-administrateur") {
       return true ;
     } else {
       return false;
