@@ -10,6 +10,6 @@ export class Utilisateur{
         public mdp?:string,
         public role?:string,
         public etat?:boolean ,
-        public photoProfil?: File
+        public photo?:string
     ){}
 }

@@ -6,5 +6,6 @@ export class Admin{
         public email?:string,
         public mdp?:string,
         public role?:string,
+        public photo?:string
     ){}
 }

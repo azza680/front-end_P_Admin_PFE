@@ -17,6 +17,7 @@ export class ModifierprofilComponent {
   userFile: any;
   public imagePath: any;
   imgURL: any = '';
+  userDetails: any;
   public message!: string;
   constructor(
     private fb: FormBuilder,
@@ -24,6 +25,7 @@ export class ModifierprofilComponent {
     private route: Router,
     private router: ActivatedRoute
   ) {
+    this.userDetails = this.service.getUserInfo();
     let formControles = {
       nom: new FormControl('', [
         Validators.required,
@@ -34,6 +36,7 @@ export class ModifierprofilComponent {
       email: new FormControl('', [Validators.required,Validators.email]),
       mdp: new FormControl('', [Validators.required]),
       role: new FormControl('', [Validators.required]),
+    photo: ['']
      
     };
     this.updateForm = this.fb.group(formControles);
@@ -54,8 +57,25 @@ export class ModifierprofilComponent {
   get role() {
     return this.updateForm.get('role');
   }
+  get photo (){return this.updateForm.get('photo');}
 
-
+  onSelectFile(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.userFile = file;
+      var mimeType = event.target.files[0].type;
+      if (mimeType.match(/image\/*/) == null) {
+        this.message = 'Only images are supported.';
+        return;
+      }
+      var reader = new FileReader();
+      this.imagePath = file;
+      reader.readAsDataURL(file);
+      reader.onload = (_event) => {
+        this.imgURL = reader.result;
+      };
+    }
+  }
 
   ngOnInit(): void {
     let idEvent = this.router.snapshot.params['id'];
@@ -68,7 +88,7 @@ export class ModifierprofilComponent {
         prenom: event.prenom,
         email: event.email,
         mdp: event.mdp,
-        role: event.role, });}); }
+        role: event.role});}); }
   updateAdmin() {
     let data = this.updateForm.value;
     let admin =new Admin(
@@ -77,9 +97,11 @@ export class ModifierprofilComponent {
       data.prenom,
       data.email,
       data.mdp,
-      data.role, );
-    console.log(admin);
-    console.log(data);
+      data.role, 
+    this.imgURL);
+    console.log("image : ", this.imgURL)
+    console.log("admin",admin);
+    console.log("data",data);
     this.service.updateAdmin(this.id,admin).subscribe((res) => {
       console.log(res);
       this.route.navigate(['/profil'])}); }

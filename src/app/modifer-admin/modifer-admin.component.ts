@@ -77,7 +77,8 @@ export class ModiferAdminComponent
       data.prenom,
       data.email,
       data.mdp,
-      data.role, );
+      data.role, 
+);
     console.log(admin);
     console.log(data);
     this.service.updateAdmin(this.id,admin).subscribe((res) => {

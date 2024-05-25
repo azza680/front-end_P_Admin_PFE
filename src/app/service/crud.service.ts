@@ -122,5 +122,17 @@ export class CrudService {
     {
       return this.http.post<any>(this.apiUrl+"/Utilisateur/send_email", annonceur);
     }
+    getUtilisateursParRole(role: string): Observable<Utilisateur[]> {
+      return this.http.get<Utilisateur[]>(`${this.apiUrl}/Utilisateur/role`, { params: { role } });
+    }
+    getUserInfo() {
+      var token = localStorage.getItem("myToken");
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(token);
+      const expirationDate = helper.getTokenExpirationDate(token);
+      const isExpired = helper.isTokenExpired(token);
+      var decoded: any
+      return decodedToken?.data
+    }
     
 }

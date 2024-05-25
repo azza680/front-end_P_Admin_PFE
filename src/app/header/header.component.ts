@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../service/crud.service';
 import { Contact } from '../Entites/Contact.Entites';
+import { Admin } from '../Entites/Admin.Entites';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { Contact } from '../Entites/Contact.Entites';
 })
 export class HeaderComponent {
   totalContacts: number = 0;
-  userDetails: any;
+  userDetails: Admin;
   listContact: Contact[];
 
   constructor(private router: Router, private service: CrudService) {

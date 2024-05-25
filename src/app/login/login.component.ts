@@ -40,7 +40,7 @@ export class LoginComponent {
   login() {
     let data = this.loginForm.value;
     console.log(data);
-    let admin = new Admin(null,null,null,data.email,data.mdp,null);
+    let admin = new Admin(null,null,null,data.email,data.mdp,null,null);
     console.log(admin);
     if (
       data.email == 0 ||
@@ -55,7 +55,7 @@ export class LoginComponent {
   
       this.service.loginAdmin(admin).subscribe(
         res=>{
-          console.log(res);
+          console.log("ress hathy ",res);
           let token = res.token;
           localStorage.setItem("myToken",res.token);
           localStorage.setItem("role",res.role);
@@ -63,7 +63,8 @@ export class LoginComponent {
       },
        
         err=>{
-          console.log(err);
+          console.log("err hathy ",err);
+          console.log("admin hatha ",admin);
           this.toast.error({
             detail: 'Error Message',
             summary: 'Probléme de Serveur',
