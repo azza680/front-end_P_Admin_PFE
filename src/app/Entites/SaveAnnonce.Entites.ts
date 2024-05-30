@@ -2,7 +2,7 @@ export class SaveAnnonce{
     constructor(
         public id?: number,
       public nom?: string,
-      public image?: string,
+      public image?: string[],
       public description?: string,
       public prix?: number,
       public nombre_chambre?: number,

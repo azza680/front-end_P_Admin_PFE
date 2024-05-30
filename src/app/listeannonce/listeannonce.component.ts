@@ -146,7 +146,13 @@ export class ListeannonceComponent implements OnInit {
 )
   }
     
-
+  getRows(images: string[]): string[][] {
+    const rows = [];
+    for (let i = 0; i < images.length; i += 2) {
+      rows.push(images.slice(i, i + 2));
+    }
+    return rows;
+  }
   selectAnnonce(annonce: Annonce): void {
     this.annonce = annonce;  // Set the active annonce
   }
