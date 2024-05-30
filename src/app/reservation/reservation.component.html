@@ -22,7 +22,6 @@
                     <div class="modal-header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
                     </div>
-                   
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
@@ -58,70 +57,83 @@
                         </div>
                     </div><!-- fin du titre de la page -->
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Détails</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Titre de l'annonce</th>
-                                                    <th>Client</th>
-                                                    <th>Date de réservation</th>
-                                                    <th>Nombre de nuits</th>
-                                                    <th>Nombre de vacanciers</th>
-                                                    <th>Montant payé</th>
-                                                    <th>Date de réservation</th>
-                                                    <th>Etat</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let reservation of Reservation">
-                                                    <td>{{ reservation.annonce.id }}</td>
-                                                    <td>{{ reservation.annonce.titre }}</td>
-                                                    <td>{{ reservation.utilisateur.nom }} {{ reservation.utilisateur.prenom }}</td>
-                                                    <td>{{ reservation.date_arrivee }} / {{ reservation.date_depart }}</td>
-                                                    <td>{{ reservation.nb_nuit }}</td>
-                                                    <td>{{ reservation.nb_vacancier }}</td>
-                                                    <td>{{ reservation.montant_paye }}</td>
-                                                    <td>Reserve le {{ reservation.date }}</td>
-                                                    <td><span *ngIf="reservation.confirmation && reservation.etat" class="badge bg-success text-light rounded-pill px-4 py-2 mt-2 ms-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-2" viewBox="0 0 16 16">
-                                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM3.97 6.97a.75.75 0 1 0-1.06 1.06L6.75 12.75a.75.75 0 0 0 1.06 0l5.25-5.25a.75.75 0 0 0-1.06-1.06L7.5 10.69 3.97 6.97z"/>
-                                                        </svg>
-                                                        Confirmé
-                                                      </span>
-                                                      <span *ngIf="!reservation.confirmation && reservation.etat" class="badge bg-danger text-light rounded-pill px-4 py-2 mt-2 ms-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-2" viewBox="0 0 16 16">
-                                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                                        </svg>
-                                                        Non confirmé
-                                                      </span>
-                                                      <span *ngIf="!reservation.etat" class="badge bg-danger text-light rounded-pill px-4 py-2 mt-2 ms-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-2" viewBox="0 0 16 16">
-                                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                                        </svg>
-                                                        En attente
-                                                      </span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- fin de la col -->
-                    </div><!-- fin de la rangée -->
+
+                    <!-- Ajout de l'input de recherche -->
+                   <div class="row mb-3">
+  <div class="col-md-4">
+    <label for="searchDate" class="form-label">Rechercher par date de réservation :</label>
+  </div>
+  <div class="col-md-4">
+    <input type="date" class="form-control input-sm" id="searchDate" [(ngModel)]="searchQuery" (input)="searchReservationParDate()">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Détails</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Titre de l'annonce</th>
+                <th>Client</th>
+                <th>Date </th>
+                <th>Nombre de nuits</th>
+                <th>Nombre de vacanciers</th>
+                <th>Montant payé</th>
+                <th>Date de réservation</th>
+                <th>Etat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of reservations" [ngClass]="{'highlighted': isHighlighted(reservation)}">
+                <td>{{ reservation.annonce?.id }}</td>
+                <td>{{ reservation.annonce?.titre }}</td>
+                <td>{{ reservation.utilisateur?.nom }} {{ reservation.utilisateur?.prenom }}</td>
+                <td>{{ reservation.date_arrivee }} / {{ reservation.date_depart }}</td>
+                <td>{{ reservation.nb_nuit }}</td>
+                <td>{{ reservation.nb_vacancier }}</td>
+                <td>{{ reservation.montant_paye }}</td>
+                <td>Réservé le {{ reservation.date }}</td>
+
+                <td><span *ngIf="reservation.confirmation && reservation.etat" class="badge bg-success text-light rounded-pill px-4 py-2 mt-2 ms-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-2" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM3.97 6.97a.75.75 0 1 0-1.06 1.06L6.75 12.75a.75.75 0 0 0 1.06 0l5.25-5.25a.75.75 0 0 0-1.06-1.06L7.5 10.69 3.97 6.97z"/>
+                    </svg>
+                    Confirmé
+                  </span>
+                  <span *ngIf="!reservation.confirmation && reservation.etat" class="badge bg-danger text-light rounded-pill px-4 py-2 mt-2 ms-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-2" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    Non confirmé
+                  </span>
+                  <span *ngIf="!reservation.etat" class="badge bg-danger text-light rounded-pill px-4 py-2 mt-2 ms-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-2" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    En attente
+                  </span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
                     <pagination-controls style="text-align: right; color: #eb2f64;"></pagination-controls>
                     <!-- fin de la rangée -->
                 </div><!-- container-fluid -->
             </div><!-- Fin du contenu de la page -->
             <app-footer></app-footer>
+
         </div><!-- fin du contenu principal -->
     </div><!-- Deuxième moitié de la page -->
 
