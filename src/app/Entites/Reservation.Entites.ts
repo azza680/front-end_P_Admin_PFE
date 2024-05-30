@@ -1,3 +1,6 @@
+import { Annonce } from "./Annonce.Entites";
+import { Utilisateur } from "./Utilisateur.Entites";
+
 export class Reservation {
     constructor(
         public id?: number,
@@ -10,6 +13,8 @@ export class Reservation {
         public etat?: boolean,
         public confirmation?: boolean,
         public id_annonce?: number, 
-        public id_client?: number,  
+        public id_client?: number,
+        public annonce?: Annonce, // Propriété annonce de type Annonce
+        public utilisateur?: Utilisateur // Propriété utilisateur de type Utilisateur
     ) { }
 }
